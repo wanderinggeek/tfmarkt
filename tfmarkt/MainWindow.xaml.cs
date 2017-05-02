@@ -24,10 +24,5 @@ namespace tfmarkt
         {
             InitializeComponent();
         }
-
-        public void testForGit()
-        {
-
-        }
     }
 }
