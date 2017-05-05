@@ -1,3 +1,9 @@
+tfmarkt/build/*
+*.suo
+*.user
+*.sdf
 tfmarkt/bin/*
 tfmarkt/obj/*
-tfmarkt/Properties/*
+*.opensdf
+*.tlog
+*.log
