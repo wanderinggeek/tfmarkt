@@ -1,2 +1,0 @@
-\\mac\home\documents\visual studio 2013\Projects\tfmarkt\tfmarkt\bin\Debug\tfmarkt.exe.config
-C:\Users\Stefan\Documents\Visual Studio 2013\Projects\tfmarkt\tfmarkt\tfmarkt\bin\Debug\tfmarkt.exe.config
