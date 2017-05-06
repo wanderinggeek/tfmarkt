@@ -23,6 +23,37 @@ namespace tfmarkt
         public MainWindow()
         {
             InitializeComponent();
+            
+        }
+
+        private void tapetenTab_Clicked(object sender, MouseButtonEventArgs e)
+        {
+            TapetenGUI tapetenGui = new TapetenGUI();
+            TapetenTab.Content = tapetenGui.Content;
+        }
+
+        private void Selector_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+          
+            if (TapetenTab.IsSelected)
+            {
+                TapetenGUI tapetenGui = new TapetenGUI();
+                TapetenTab.Content = tapetenGui.Content;
+            }
+            if (VerwaltungTab.IsSelected)
+            {
+                Verwaltung verwaltungGui = new Verwaltung();
+                VerwaltungTab.Content = verwaltungGui.Content;
+            }
+            if (FliesenTab.IsSelected)
+            {
+                FliesenGUI fliesenGui = new FliesenGUI();
+                FliesenTab.Content = fliesenGui;
+            }
+            if (MainMenuTab.IsSelected)
+            {
+                MainMenuTab.Content = "Main Menu Stuff";
+            }
         }
     }
 }
