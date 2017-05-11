@@ -43,23 +43,17 @@ namespace tfmarkt
             produkte.Add(new Tapete(7.99, "Tapete G", 66666666, "Beschreibung", 70, 70, 70));
             produkte.Add(new Tapete(8.99, "Tapete H", 77777777, "Beschreibung", 80, 80, 80));
             //produkte.Clear();
-            Produktliste.ItemsSource = produkte;
+            Warenkorb.ItemsSource = produkte;
         }
 
         private void loescheProdukt(object sender, RoutedEventArgs e)
         {
-            var items = Produktliste.SelectedItems;
-
-            // Mehrere Items löschen (funktioniert nicht)
-            //foreach (Produkt item in items)
-            //{
-            //    produkte.Remove(item);
-            //}
+            var items = Warenkorb.SelectedItems;
 
             // Einzelnes Item löschen
-            Produkt test = (Produkt)Produktliste.SelectedItem;
-            produkte.Remove(test);
-            Produktliste.Items.Refresh();
+            Produkt produkt = (Produkt)Warenkorb.SelectedItem;
+            produkte.Remove(produkt);
+            Warenkorb.Items.Refresh();
         }
 
         private void erstelleGesamtrechnung(object sender, RoutedEventArgs e)
@@ -70,7 +64,7 @@ namespace tfmarkt
         private void kalkulationAbbrechen(object sender, RoutedEventArgs e)
         {
             produkte.Clear();
-            Produktliste.Items.Refresh();
+            Warenkorb.Items.Refresh();
         }
     }
 }
