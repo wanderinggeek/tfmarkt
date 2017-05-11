@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Collections.ObjectModel;
+using tfmarkt.Produktklassen;
 
 namespace tfmarkt
 {
@@ -20,40 +22,49 @@ namespace tfmarkt
     /// </summary>
     public partial class MainWindow : Window
     {
+        public ObservableCollection<Produkt> produkte;
+
         public MainWindow()
         {
             InitializeComponent();
-            
+            GetProdukte();
         }
 
-        private void tapetenTab_Clicked(object sender, MouseButtonEventArgs e)
+        private void GetProdukte()
         {
-            TapetenGUI tapetenGui = new TapetenGUI();
-            TapetenTab.Content = tapetenGui.Content;
+            // Liste mit Testdaten, wird im DataGrid des Hauptmenues angezeigt
+            produkte = new ObservableCollection<Produkt>();
+            produkte.Add(new Tapete(1.99, "Tapete A", 12345678, "Beschreibung", 10, 10, 10));
+            produkte.Add(new Tapete(2.99, "Tapete B", 11111111, "Beschreibung", 20, 20, 20));
+            produkte.Add(new Tapete(3.99, "Tapete C", 22222222, "Beschreibung", 30, 30, 30));
+            produkte.Add(new Tapete(4.99, "Tapete D", 33333333, "Beschreibung", 40, 40, 40));
+            produkte.Add(new Tapete(5.99, "Tapete E", 44444444, "Beschreibung", 50, 50, 50));
+            produkte.Add(new Tapete(6.99, "Tapete F", 55555555, "Beschreibung", 60, 60, 60));
+            produkte.Add(new Tapete(7.99, "Tapete G", 66666666, "Beschreibung", 70, 70, 70));
+            produkte.Add(new Tapete(8.99, "Tapete H", 77777777, "Beschreibung", 80, 80, 80));
+            //produkte.Clear();
+            Warenkorb.ItemsSource = produkte;
         }
 
-        private void Selector_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void loescheProdukt(object sender, RoutedEventArgs e)
         {
-          
-            if (TapetenTab.IsSelected)
-            {
-                TapetenGUI tapetenGui = new TapetenGUI();
-                TapetenTab.Content = tapetenGui.Content;
-            }
-            if (VerwaltungTab.IsSelected)
-            {
-                Verwaltung verwaltungGui = new Verwaltung();
-                VerwaltungTab.Content = verwaltungGui.Content;
-            }
-            if (FliesenTab.IsSelected)
-            {
-                FliesenGUI fliesenGui = new FliesenGUI();
-                FliesenTab.Content = fliesenGui;
-            }
-            if (MainMenuTab.IsSelected)
-            {
-                MainMenuTab.Content = "Main Menu Stuff";
-            }
+            var items = Warenkorb.SelectedItems;
+
+            // Einzelnes Item löschen
+            Produkt produkt = (Produkt)Warenkorb.SelectedItem;
+            produkte.Remove(produkt);
+            Warenkorb.Items.Refresh();
+        }
+
+        private void erstelleGesamtrechnung(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Neues Fenster für Gesamtrechnung");   
+        }
+
+        private void kalkulationAbbrechen(object sender, RoutedEventArgs e)
+        {
+            produkte.Clear();
+            Warenkorb.Items.Refresh();
         }
     }
 }

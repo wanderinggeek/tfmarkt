@@ -3,14 +3,50 @@
         xmlns:tapetenTabDaten="clr-namespace:tfmarkt"     
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="MainWindow" Height="350" Width="525"
+        ResizeMode="NoResize"
+        Title="TF Kalkulation" Height="600" Width="800"
         >
     <Grid>
-        <TabControl HorizontalAlignment="Center" VerticalAlignment="Top" Width="517" Height="350" SelectionChanged="Selector_OnSelectionChanged">
-            <TabItem Header="Hauptmenü" x:Name="MainMenuTab"/>
-            <TabItem Header="Verwaltung" x:Name="VerwaltungTab"/>
-            <TabItem  Header="Tapeten" x:Name="TapetenTab"/>
-            <TabItem Header="Fliesen" x:Name="FliesenTab"/>      
+        
+        <TabControl HorizontalAlignment="Center" VerticalAlignment="Top" Width="795" Height="600">
+            <TabItem Header="Warenkorb" x:Name="MainMenuTab">
+                <Grid>
+                    <Label Content="Folgende Produkte befinden sich in Ihrem Warenkorb:" HorizontalAlignment="Left" Margin="0,10,0,0"/>
+                    <DataGrid SelectionMode="Extended" Background="White" Height="450" AutoGenerateColumns="False" ColumnWidth="*" HorizontalAlignment="Left" Name="Warenkorb"
+                     VerticalAlignment="Top" IsReadOnly="True" Margin="0,40,0,0">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Produktname" FontSize="14" Binding="{Binding Path=name}" MinWidth="50" />
+                            <DataGridTextColumn Header="Preis" FontSize="14" Binding="{Binding Path=preis}" MinWidth="50" />
+                            <DataGridTextColumn Header="Menge" FontSize="14" Binding="{Binding Path=menge}" MinWidth="50" />
+                            <DataGridTextColumn Header="Artikelnummer" FontSize="14" Binding="{Binding Path=artikelnummer}" MinWidth="50" />
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <Button Click="loescheProdukt" Content="Produkt entfernen" HorizontalAlignment="Left" Margin="22,507,0,0" VerticalAlignment="Top" Width="106"/>
+                    <Button Click="erstelleGesamtrechnung" Content="Gesamtrechnung erstellen" HorizontalAlignment="Left" Margin="604,507,0,0" VerticalAlignment="Top" Width="165"/>
+                    <Button Click="kalkulationAbbrechen" Content="Kalkulation abbrechen" HorizontalAlignment="Left" Margin="426,507,0,0" VerticalAlignment="Top" Width="165"/>
+
+                </Grid>
+            </TabItem>
+            
+            <TabItem  Header="Tapeten" x:Name="TapetenTab">
+                <Grid Margin="5,5,0,0">
+                    <TextBlock Text="Inhalt Tapeten"/>
+                </Grid>
+            </TabItem>
+                
+            <TabItem Header="Fliesen" x:Name="FliesenTab">
+                <Grid Margin="5,5,0,0">
+                    <TextBlock Text="Inhalt Fliesen"/>
+                </Grid>
+            </TabItem>
+
+            <TabItem Header="Produktverwaltung" x:Name="VerwaltungTab">
+                <Grid Margin="5,5,0,0">
+                    <TextBlock Text="Inhalt Verwaltung"/>
+                </Grid>
+            </TabItem>
+
         </TabControl>
+
     </Grid>
 </Window>
