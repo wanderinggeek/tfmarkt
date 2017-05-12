@@ -10,29 +10,22 @@ namespace tfmarkt
     class Berechnung
     {
         // Attribute
-        public double flaeche;
         public double gesamtbetrag;
-        public Fliesenkleber fliesenkleber;
-        public Tapetenkleister tapetenkleister;
-        public Fugenfueller fugenfueller;
 
-        public Berechnung(double flaeche, Fliesenkleber fliesenkleber, Tapetenkleister tapetenkleister, Fugenfueller fugenfueller)
+        // Später als Parameter den Produktkatalog übergeben
+        public Berechnung()
         {
-            this.flaeche = flaeche;
             this.gesamtbetrag = 0;
-            this.fliesenkleber = fliesenkleber;
-            this.tapetenkleister = tapetenkleister;
-            this.fugenfueller = fugenfueller;
         }
 
         // Der Typ vom Parameter fliese muss auf Fliese geändert werden, sobald die Klasse dazu verfügbar ist
-        public void FliesenBerechnen(Produkt fliese)
+        public void FliesenBerechnen(double flaeche, Produkt fliese)
         {
             // Berechnung Fliesen
             // GesamtBetragAktualiseren
         }
 
-        public void TapetenBerechnen(Tapete tapete)
+        public void TapetenBerechnen(double flaeche, Tapete tapete)
         {
             // Berechnung Tapeten
             // GesamtBetragAktualsieren
@@ -59,9 +52,16 @@ namespace tfmarkt
             }
         }
 
-        public void GesamtBetragAktualisieren(double betragFuerAktuelleTransaktion)
+        public void GesamtBetragAktualisieren(double betragFuerAktuelleTransaktion, string aktion)
         {
-            this.gesamtbetrag += betragFuerAktuelleTransaktion;
+            if (aktion == "Hinzufuegen")
+            {
+                this.gesamtbetrag += betragFuerAktuelleTransaktion;
+            }
+            else
+            {
+                this.gesamtbetrag -= betragFuerAktuelleTransaktion;
+            }
         }
     }
 }
