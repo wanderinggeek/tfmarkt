@@ -14,6 +14,5 @@ namespace tfmarkt.Produktklassen
         public int artikelnummer { get; set; }
         public string beschreibung { get; set; }
         public Type produkttyp { get; set; }
-
     }
 }
