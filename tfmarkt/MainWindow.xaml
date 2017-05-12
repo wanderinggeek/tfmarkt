@@ -7,8 +7,12 @@
         Title="TF Kalkulation" Height="600" Width="800"
         >
     <Grid>
-        
-        <TabControl HorizontalAlignment="Center" VerticalAlignment="Top" Width="795" Height="600">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="709*"/>
+            <ColumnDefinition Width="84*"/>
+        </Grid.ColumnDefinitions>
+
+        <TabControl HorizontalAlignment="Center" VerticalAlignment="Top" Width="795" Height="600" Grid.ColumnSpan="2" Margin="-1,0,-0.4,-29.6">
             <TabItem Header="Warenkorb" x:Name="MainMenuTab">
                 <Grid>
                     <Label Content="Folgende Produkte befinden sich in Ihrem Warenkorb:" HorizontalAlignment="Left" Margin="0,10,0,0"/>
@@ -17,7 +21,7 @@
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="Produktname" FontSize="14" Binding="{Binding Path=name}" MinWidth="50" />
                             <DataGridTextColumn Header="Preis" FontSize="14" Binding="{Binding Path=preis}" MinWidth="50" />
-                            <DataGridTextColumn Header="Menge" FontSize="14" Binding="{Binding Path=menge}" MinWidth="50" />
+                            <DataGridTextColumn Header="Anzahl" FontSize="14" Binding="{Binding Path=anzahl}" MinWidth="50" />
                             <DataGridTextColumn Header="Artikelnummer" FontSize="14" Binding="{Binding Path=artikelnummer}" MinWidth="50" />
                         </DataGrid.Columns>
                     </DataGrid>
@@ -27,13 +31,13 @@
 
                 </Grid>
             </TabItem>
-            
+
             <TabItem  Header="Tapeten" x:Name="TapetenTab">
                 <Grid Margin="5,5,0,0">
                     <TextBlock Text="Inhalt Tapeten"/>
                 </Grid>
             </TabItem>
-                
+
             <TabItem Header="Fliesen" x:Name="FliesenTab">
                 <Grid Margin="5,5,0,0">
                     <TextBlock Text="Inhalt Fliesen"/>

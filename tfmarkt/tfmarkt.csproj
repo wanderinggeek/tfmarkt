@@ -70,11 +70,15 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Produktklassen\Fliesenkleber.cs" />
+    <Compile Include="Produktklassen\Fugenfueller.cs" />
     <Compile Include="Produktklassen\Produkt.cs" />
     <Compile Include="Produktklassen\Tapete.cs" />
     <Compile Include="FliesenGUI.xaml.cs">
       <DependentUpon>FliesenGUI.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Produktklassen\Tapetenkleister.cs" />
+    <Compile Include="Produktklassen\Zusatzprodukt.cs" />
     <Compile Include="TapetenGUI.xaml.cs">
       <DependentUpon>TapetenGUI.xaml</DependentUpon>
     </Compile>

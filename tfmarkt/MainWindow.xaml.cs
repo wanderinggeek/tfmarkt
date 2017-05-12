@@ -34,23 +34,18 @@ namespace tfmarkt
         {
             // Liste mit Testdaten, wird im DataGrid des Hauptmenues angezeigt
             produkte = new ObservableCollection<Produkt>();
-            produkte.Add(new Tapete(1.99, "Tapete A", 12345678, "Beschreibung", 10, 10, 10));
-            produkte.Add(new Tapete(2.99, "Tapete B", 11111111, "Beschreibung", 20, 20, 20));
-            produkte.Add(new Tapete(3.99, "Tapete C", 22222222, "Beschreibung", 30, 30, 30));
-            produkte.Add(new Tapete(4.99, "Tapete D", 33333333, "Beschreibung", 40, 40, 40));
-            produkte.Add(new Tapete(5.99, "Tapete E", 44444444, "Beschreibung", 50, 50, 50));
-            produkte.Add(new Tapete(6.99, "Tapete F", 55555555, "Beschreibung", 60, 60, 60));
-            produkte.Add(new Tapete(7.99, "Tapete G", 66666666, "Beschreibung", 70, 70, 70));
-            produkte.Add(new Tapete(8.99, "Tapete H", 77777777, "Beschreibung", 80, 80, 80));
+            produkte.Add(new Tapete(1.99, "Fancy Tapete", 11111111, "Hui", 10, 10, 10));
+            produkte.Add(new Tapetenkleister(1.49, "Meister Kleister", 22222222, "Toller Tapetenkleister", 26));
+            produkte.Add(new Fugenfueller(1.49, "Fugenfüller Fugi", 33333333, "Fugenfüller, das Original", 300));
+            produkte.Add(new Fliesenkleber(1.49, "Sticky Fliesenkleber", 44444444, "Klebt super!", 300, true));
+
             //produkte.Clear();
             Warenkorb.ItemsSource = produkte;
         }
 
         private void loescheProdukt(object sender, RoutedEventArgs e)
         {
-            var items = Warenkorb.SelectedItems;
-
-            // Einzelnes Item löschen
+            // Ausgewähltes Produkt aus dem Warenkorb löschen
             Produkt produkt = (Produkt)Warenkorb.SelectedItem;
             produkte.Remove(produkt);
             Warenkorb.Items.Refresh();
@@ -58,11 +53,14 @@ namespace tfmarkt
 
         private void erstelleGesamtrechnung(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Neues Fenster für Gesamtrechnung");   
+            // Gesamtrechnung erstellen
+            MessageBox.Show("Neues Fenster für Gesamtrechnung");
+            Tapetenkleister TP = new Tapetenkleister(1.00, "TK Name", 1111, "Beschreibung", 26);
         }
 
         private void kalkulationAbbrechen(object sender, RoutedEventArgs e)
         {
+            // Kalkulation abbrechen, alle Werte auf Standard zurücksetzen
             produkte.Clear();
             Warenkorb.Items.Refresh();
         }
