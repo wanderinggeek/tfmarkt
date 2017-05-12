@@ -1,4 +1,5 @@
 tfmarkt/build/*
+tfmarkt/.DS_Store
 *.suo
 *.user
 *.sdf
