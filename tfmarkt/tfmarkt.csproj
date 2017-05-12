@@ -70,6 +70,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Berechnung.cs" />
     <Compile Include="Produktklassen\Fliesenkleber.cs" />
     <Compile Include="Produktklassen\Fugenfueller.cs" />
     <Compile Include="Produktklassen\Produkt.cs" />
