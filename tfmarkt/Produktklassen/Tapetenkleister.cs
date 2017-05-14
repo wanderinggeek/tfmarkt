@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace tfmarkt.Produktklassen
 {
-    class Tapetenkleister : Zusatzprodukt
+    public class Tapetenkleister : Zusatzprodukt
     {
         // Attribute
         private double reichweite;
@@ -19,8 +19,11 @@ namespace tfmarkt.Produktklassen
             base.artikelnummer = artikelnummer;
             base.beschreibung = beschreibung;
 
+            this.produkttyp = "tapetenkleister";
             this.reichweite = reichweite;
         }
+
+        public Tapetenkleister() { }
 
         // Get / Set
         public double Reichweite

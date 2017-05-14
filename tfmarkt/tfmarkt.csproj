@@ -70,6 +70,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="AendereErstelleProduktFenster.xaml.cs">
+      <DependentUpon>AendereErstelleProduktFenster.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Produktkatalog.cs" />
+    <Compile Include="Produktklassen\Fliese.cs" />
     <Compile Include="Produktklassen\Fliesenkleber.cs" />
     <Compile Include="Produktklassen\Fugenfueller.cs" />
     <Compile Include="Produktklassen\Produkt.cs" />
@@ -85,6 +90,10 @@
     <Compile Include="Verwaltung.xaml.cs">
       <DependentUpon>Verwaltung.xaml</DependentUpon>
     </Compile>
+    <Page Include="AendereErstelleProduktFenster.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="FliesenGUI.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

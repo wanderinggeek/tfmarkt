@@ -23,11 +23,44 @@ namespace tfmarkt
     public partial class MainWindow : Window
     {
         public ObservableCollection<Produkt> produkte;
+        public Verwaltung verwaltungGui;
+        public FliesenGUI fliesenGui;
+        public TapetenGUI tapetenGui;
+
 
         public MainWindow()
         {
             InitializeComponent();
             GetProdukte();
+        }
+
+        private void Selector_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
+                    {
+                      
+                        if (TapetenTab.IsSelected)
+                            {
+                                if (tapetenGui == null)
+                                {
+                                   tapetenGui = new TapetenGUI();
+                                }
+                                TapetenTab.Content = tapetenGui.Content;
+                            }
+                        if (VerwaltungTab.IsSelected)
+                            {
+                                if (verwaltungGui == null)
+                                {
+                                    verwaltungGui = new Verwaltung();
+                                }
+                                VerwaltungTab.Content = verwaltungGui.Content;
+                            }
+                       if (FliesenTab.IsSelected)
+                            {
+                                if (fliesenGui == null)
+                                {
+                                    fliesenGui = new FliesenGUI();
+                                }
+                                FliesenTab.Content = fliesenGui;
+                            }                    
         }
 
         private void GetProdukte()

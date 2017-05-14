@@ -27,6 +27,7 @@ namespace tfmarkt.Produktklassen
             this.laenge = laenge;
             this.breite = breite;
             this.anzahl = anzahl;
+            this.produkttyp = "Fliese";
         }
 
         public Fliese() { }

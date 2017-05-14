@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace tfmarkt.Produktklassen
 {
-    class Fugenfueller : Zusatzprodukt
+   public class Fugenfueller : Zusatzprodukt
     {
         // Attribute
         public double verbrauch;
@@ -19,8 +19,11 @@ namespace tfmarkt.Produktklassen
             base.artikelnummer = artikelnummer;
             base.beschreibung = beschreibung;
 
+            this.produkttyp = "fugenfueller";
             this.verbrauch = verbrauch;
         }
+
+        public Fugenfueller() { }
 
         // Get / Set
         public double Verbrauch
