@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -26,12 +26,15 @@ namespace tfmarkt
         public Verwaltung verwaltungGui;
         public FliesenGUI fliesenGui;
         public TapetenGUI tapetenGui;
-
+        Berechnung berechnung;
 
         public MainWindow()
         {
             InitializeComponent();
             GetProdukte();
+
+            // Später den Produktkatalog als Parameter für Berechnung übergeben
+            this.berechnung = new Berechnung();
         }
 
         private void Selector_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -82,13 +85,16 @@ namespace tfmarkt
             Produkt produkt = (Produkt)Warenkorb.SelectedItem;
             produkte.Remove(produkt);
             Warenkorb.Items.Refresh();
+
+            // Später ausformulieren: Preis für entfernten Warenkorbposten ermitteln
+            // Anzahl des Produkts * Preis des Produkts
+            berechnung.GesamtBetragAktualisieren(0, "Abziehen");
         }
 
         private void erstelleGesamtrechnung(object sender, RoutedEventArgs e)
         {
             // Gesamtrechnung erstellen
             MessageBox.Show("Neues Fenster für Gesamtrechnung");
-            Tapetenkleister TP = new Tapetenkleister(1.00, "TK Name", 1111, "Beschreibung", 26);
         }
 
         private void kalkulationAbbrechen(object sender, RoutedEventArgs e)
