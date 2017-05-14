@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -70,6 +70,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="AendereErstelleProduktFenster.xaml.cs">
+      <DependentUpon>AendereErstelleProduktFenster.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Produktkatalog.cs" />
+    <Compile Include="Produktklassen\Fliese.cs" />
     <Compile Include="Berechnung.cs" />
     <Compile Include="Produktklassen\Fliesenkleber.cs" />
     <Compile Include="Produktklassen\Fugenfueller.cs" />
@@ -86,6 +91,10 @@
     <Compile Include="Verwaltung.xaml.cs">
       <DependentUpon>Verwaltung.xaml</DependentUpon>
     </Compile>
+    <Page Include="AendereErstelleProduktFenster.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="FliesenGUI.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

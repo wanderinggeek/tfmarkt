@@ -28,8 +28,10 @@ namespace tfmarkt.Produktklassen
             this.laenge = laenge;
             this.breite = breite;
             this.musterversatz = musterversatz;
-            this.produkttyp = typeof(Tapete);
+            this.produkttyp = "Tapete";
         }
+
+        public Tapete() { }
 
         //Gibt die Fläche zurück, die mit der Tapete abgedeckt werden kann
         public double GetFlaeche()

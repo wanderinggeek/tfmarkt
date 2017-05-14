@@ -6,6 +6,19 @@
              mc:Ignorable="d" 
              d:DesignHeight="600" d:DesignWidth="795">
     <Grid>
-            <TextBlock Text="Verwaltung Data"></TextBlock>
+        <Label Content="Folgende Produkte befinden sich im Verwaltungssytem:" HorizontalAlignment="Left" Margin="0,10,0,0"/>
+        <DataGrid  Background="White" Height="450" AutoGenerateColumns="false" ColumnWidth="*" HorizontalAlignment="Left" x:Name="VerwaltungsGrid"
+                  VerticalAlignment="Top" IsReadOnly="true"  Margin="0,40,0,0" SelectionChanged="VerwaltungsGrid_OnSelectionChanged">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Produktname" FontSize="14" Binding="{Binding Path=name}" MinWidth="50" />
+                <DataGridTextColumn Header="Preis" FontSize="14" Binding="{Binding Path=preis}" MinWidth="50" />
+                <DataGridTextColumn Header="Anzahl" FontSize="14" Binding="{Binding Path=anzahl}" MinWidth="50" />
+                <DataGridTextColumn Header="Artikelnummer" FontSize="14" Binding="{Binding Path=artikelnummer}" MinWidth="50" />
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button x:Name="deleteButton"  Click="produktLoeschen" Content="Produkt löschen" HorizontalAlignment="Left" Margin="22,507,0,0" VerticalAlignment="Top" Width="106"/>
+        <Button Click="produktAendern"  Content="Produkt ändern" HorizontalAlignment="Left" Margin="604,507,0,0" VerticalAlignment="Top" Width="165"/>
+        <Button Click="produktAnlegen"  Content="Neues Produkt anlegen" HorizontalAlignment="Left" Margin="426,507,0,0" VerticalAlignment="Top" Width="165"/>
+
     </Grid>
 </UserControl>

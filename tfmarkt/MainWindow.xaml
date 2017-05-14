@@ -12,7 +12,7 @@
             <ColumnDefinition Width="84*"/>
         </Grid.ColumnDefinitions>
 
-        <TabControl HorizontalAlignment="Center" VerticalAlignment="Top" Width="795" Height="600" Grid.ColumnSpan="2" Margin="-1,0,-0.4,-29.6">
+        <TabControl HorizontalAlignment="Center" VerticalAlignment="Top" Width="795" Height="600" Grid.ColumnSpan="2" Margin="-1,0,-0.4,-29.6" SelectionChanged="Selector_OnSelectionChanged">
             <TabItem Header="Warenkorb" x:Name="MainMenuTab">
                 <Grid>
                     <Label Content="Folgende Produkte befinden sich in Ihrem Warenkorb:" HorizontalAlignment="Left" Margin="0,10,0,0"/>
@@ -49,7 +49,7 @@
                     <TextBlock Text="Inhalt Verwaltung"/>
                 </Grid>
             </TabItem>
-
+           
         </TabControl>
 
     </Grid>

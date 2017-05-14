@@ -13,16 +13,19 @@ namespace tfmarkt.Produktklassen
         private bool angehakt { get; set; }
 
         // Konstruktor
-        public Fliesenkleber(double preis, string name, int artikelnummer, string beschreibung, double flaeche, bool angehakt)
+        public Fliesenkleber(double preis, string name, int artikelnummer, string beschreibung, double flaeche, bool angehakt = false)
         {
             base.preis = preis;
             base.name = name;
             base.artikelnummer = artikelnummer;
             base.beschreibung = beschreibung;
 
+            this.produkttyp = "fliesenkleber";
             this.flaeche = flaeche;
             this.angehakt = angehakt;
         }
+
+        public Fliesenkleber() { }
 
         // Get / Set
         public double Flaeche
