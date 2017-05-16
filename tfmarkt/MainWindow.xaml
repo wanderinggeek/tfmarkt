@@ -16,7 +16,7 @@
             <TabItem Header="Warenkorb" x:Name="MainMenuTab">
                 <Grid>
                     <Label Content="Folgende Produkte befinden sich in Ihrem Warenkorb:" HorizontalAlignment="Left" Margin="0,10,0,0"/>
-                    <DataGrid SelectionMode="Extended" Background="White" Height="450" AutoGenerateColumns="False" ColumnWidth="*" HorizontalAlignment="Left" Name="Warenkorb"
+                    <DataGrid SelectionMode="Single" Background="White" Height="450" AutoGenerateColumns="False" ColumnWidth="*" HorizontalAlignment="Left" Name="Warenkorb"
                      VerticalAlignment="Top" IsReadOnly="True" Margin="0,40,0,0">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="Produktname" FontSize="14" Binding="{Binding Path=name}" MinWidth="50" />
@@ -25,22 +25,39 @@
                             <DataGridTextColumn Header="Artikelnummer" FontSize="14" Binding="{Binding Path=artikelnummer}" MinWidth="50" />
                         </DataGrid.Columns>
                     </DataGrid>
-                    <Button Click="loescheProdukt" Content="Produkt entfernen" HorizontalAlignment="Left" Margin="22,507,0,0" VerticalAlignment="Top" Width="106"/>
+                    <Button Click="EntferneProduktAusWarenkorb" Content="Produkt entfernen" HorizontalAlignment="Left" Margin="22,507,0,0" VerticalAlignment="Top" Width="106"/>
                     <Button Click="erstelleGesamtrechnung" Content="Gesamtrechnung erstellen" HorizontalAlignment="Left" Margin="604,507,0,0" VerticalAlignment="Top" Width="165"/>
                     <Button Click="kalkulationAbbrechen" Content="Kalkulation abbrechen" HorizontalAlignment="Left" Margin="426,507,0,0" VerticalAlignment="Top" Width="165"/>
-
                 </Grid>
             </TabItem>
 
             <TabItem  Header="Tapeten" x:Name="TapetenTab">
-                <Grid Margin="5,5,0,0">
-                    <TextBlock Text="Inhalt Tapeten"/>
+                <Grid>
+                    <DataGrid SelectionMode="Single"  Background="White" Height="450" AutoGenerateColumns="False" ColumnWidth="*" HorizontalAlignment="Left" Name="Tapeten"
+                    VerticalAlignment="Top" IsReadOnly="True" Margin="0,40,0,0">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Produktname" FontSize="14" Binding="{Binding Path=name}" MinWidth="50" />
+                            <DataGridTextColumn Header="Preis" FontSize="14" Binding="{Binding Path=preis}" MinWidth="50" />
+                            <DataGridTextColumn Header="Anzahl" FontSize="14" Binding="{Binding Path=anzahl}" MinWidth="50" />
+                            <DataGridTextColumn Header="Artikelnummer" FontSize="14" Binding="{Binding Path=artikelnummer}" MinWidth="50" />
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <Button Click="TapetenBerechnungStarten" Content="Berechnung durchführen" HorizontalAlignment="Left" Margin="604,507,0,0" VerticalAlignment="Top" Width="165"/>
                 </Grid>
             </TabItem>
 
             <TabItem Header="Fliesen" x:Name="FliesenTab">
-                <Grid Margin="5,5,0,0">
-                    <TextBlock Text="Inhalt Fliesen"/>
+                <Grid>
+                    <DataGrid SelectionMode="Single"  Background="White" Height="450" AutoGenerateColumns="False" ColumnWidth="*" HorizontalAlignment="Left" Name="Fliesen"
+                        VerticalAlignment="Top" IsReadOnly="True" Margin="0,40,0,0">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Produktname" FontSize="14" Binding="{Binding Path=name}" MinWidth="50" />
+                            <DataGridTextColumn Header="Preis" FontSize="14" Binding="{Binding Path=preis}" MinWidth="50" />
+                            <DataGridTextColumn Header="Anzahl" FontSize="14" Binding="{Binding Path=anzahl}" MinWidth="50" />
+                            <DataGridTextColumn Header="Artikelnummer" FontSize="14" Binding="{Binding Path=artikelnummer}" MinWidth="50" />
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <Button Click="FliesenBerechnungStarten" Content="Berechnung durchführen" HorizontalAlignment="Left" Margin="604,507,0,0" VerticalAlignment="Top" Width="165"/>
                 </Grid>
             </TabItem>
 

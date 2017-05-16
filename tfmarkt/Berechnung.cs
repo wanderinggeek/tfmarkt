@@ -25,30 +25,28 @@ namespace tfmarkt
             // GesamtBetragAktualiseren
         }
 
-        public void TapetenBerechnen(double flaeche, Tapete tapete)
+        public double TapetenBerechnen(double flaeche, Tapete tapete)
         {
             // Berechnung Tapeten
-            // GesamtBetragAktualsieren
+
+            return flaeche * 2;
         }
 
-        public void ZusatzproduktBerechnen(string zusatzprodukt)
+        public int ZusatzproduktBerechnen(string zusatzprodukt, Tapete tapete)
         {
             switch (zusatzprodukt)
             {
                 case "Tapetenkleister":
                     // Berechnung für Tapetenkleister
-                    break;
-
+                    return 2; 
                 case "Fliesenkleber":
                     // Berechnung für Fliesenkleber
-                    break;
-
+                    return 0;
                 case "Fugenfueller":
                     // Berechnung für Fugenfueller
-                    break;
-
+                    return 0;
                 default:
-                    break;
+                    return 0; // Kann für Fehlerbehandlung benutzt werden
             }
         }
 
