@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -52,12 +53,13 @@ namespace tfmarkt
         {
             try
             {
-                double preis = Convert.ToDouble(PreisTextBox.Text);
+                decimal preis = Convert.ToDecimal(PreisTextBox.Text);
                 string name = ProduktnameTextBox.Text;
                 int artikelnummer = Convert.ToInt32(ArtikelnummerTextBox.Text);
                 string beschreibung = BeschreibungTextBox.Text;
                 int laenge;
                 int breite;
+                double reichweite;
                 int anzahl = Convert.ToInt32(ExtraTextBox.Text);
                 int musterversatz = Convert.ToInt32(ExtraTextBox.Text);
                 int zusatzProduktMass = Convert.ToInt32(ExtraTextBox.Text);
@@ -68,31 +70,34 @@ namespace tfmarkt
                     switch (produktTyp)
                     {
                         case "Fliese":
-                            laenge = Convert.ToInt32(LaengeTextBox.Text);
+                            laenge = Convert.ToInt32(LaengeReichweiteTextBox.Text);
                             breite = Convert.ToInt32(BreiteTextBox.Text);
                             Fliese flieseZuSpeichern = new Fliese(preis, name, artikelnummer, beschreibung, laenge, breite, anzahl);
                             produktKatalog.ArtikelSpeichern(flieseZuSpeichern, aendereArtikel);
                             Close();
                             break;
                         case "Tapete":
-                            laenge = Convert.ToInt32(LaengeTextBox.Text);
+                            laenge = Convert.ToInt32(LaengeReichweiteTextBox.Text);
                             breite = Convert.ToInt32(BreiteTextBox.Text);
                             Tapete tapeteZuSpeichern = new Tapete(preis, name, artikelnummer, beschreibung, laenge, breite,musterversatz);
                             produktKatalog.ArtikelSpeichern(tapeteZuSpeichern, aendereArtikel);
                             Close();
                             break;
                         case "Fugenfüller":
-                            Fugenfueller fugenfuellerZuSpeichern = new Fugenfueller(preis, name, artikelnummer, beschreibung, zusatzProduktMass);
+                            reichweite = double.Parse(LaengeReichweiteTextBox.Text, NumberStyles.AllowDecimalPoint, CultureInfo.CurrentCulture);
+                            Fugenfueller fugenfuellerZuSpeichern = new Fugenfueller(preis, name, artikelnummer, beschreibung, zusatzProduktMass, reichweite);
                             produktKatalog.ArtikelSpeichern(fugenfuellerZuSpeichern, aendereArtikel);
                             Close();
                             break;
                         case "Tapetenkleister":
-                            Tapetenkleister kleisterZuSpeichern = new Tapetenkleister(preis, name, artikelnummer, beschreibung, zusatzProduktMass);
+                            reichweite = double.Parse(LaengeReichweiteTextBox.Text, NumberStyles.AllowDecimalPoint, CultureInfo.CurrentCulture);
+                            Tapetenkleister kleisterZuSpeichern = new Tapetenkleister(preis, name, artikelnummer, beschreibung, zusatzProduktMass, reichweite);
                             produktKatalog.ArtikelSpeichern(kleisterZuSpeichern, aendereArtikel);
                             Close();
                             break;
                         case "Fliesenkleber":
-                            Fliesenkleber kleberZuSpeichern = new Fliesenkleber(preis, name, artikelnummer, beschreibung, zusatzProduktMass);
+                            reichweite = double.Parse(LaengeReichweiteTextBox.Text, NumberStyles.AllowDecimalPoint, CultureInfo.CurrentCulture);
+                            Fliesenkleber kleberZuSpeichern = new Fliesenkleber(preis, name, artikelnummer, beschreibung, zusatzProduktMass, reichweite);
                             produktKatalog.ArtikelSpeichern(kleberZuSpeichern, aendereArtikel);
                             Close();
                             break;
@@ -133,25 +138,45 @@ namespace tfmarkt
             {
                 case "Fliese":
                     ExtraTextBoxLabel.Content = "Anzahl der Fliesen";
-                    LaengeTextBox.Visibility = Visibility.Visible;
-                    LaengeLabel.Visibility = Visibility.Visible;
+                    LaengeReichweiteTextBox.Visibility = Visibility.Visible;
+                    LaengeReichweiteLabel.Content = "Länge in Zentimeter";
+                    LaengeReichweiteLabel.Visibility = Visibility.Visible;
                     BreiteTextBox.Visibility = Visibility.Visible;
                     BreiteLabel.Visibility = Visibility.Visible;
                     break;
                 case "Tapete":
                     ExtraTextBoxLabel.Content = "Musterversatz";
-                    LaengeTextBox.Visibility = Visibility.Visible;
-                    LaengeLabel.Visibility = Visibility.Visible;
+                    LaengeReichweiteTextBox.Visibility = Visibility.Visible;
+                    LaengeReichweiteLabel.Content = "Länge in Meter";
+                    LaengeReichweiteLabel.Visibility = Visibility.Visible;
                     BreiteTextBox.Visibility = Visibility.Visible;
                     BreiteLabel.Visibility = Visibility.Visible;
                     break;
-                default:
-                    ExtraTextBoxLabel.Content = "Gewicht";
-                    LaengeTextBox.Visibility = Visibility.Hidden;
-                    LaengeLabel.Visibility = Visibility.Hidden;
+                case "Fliesenkleber":
+                    ExtraTextBoxLabel.Content = "Gewicht in KG";
+                    LaengeReichweiteTextBox.Visibility = Visibility.Visible;
+                    LaengeReichweiteLabel.Content = "Reichweite";
+                    LaengeReichweiteLabel.Visibility = Visibility.Visible;
                     BreiteTextBox.Visibility = Visibility.Hidden;
                     BreiteLabel.Visibility = Visibility.Hidden;
                     break;
+                case "Fugenfüller":
+                    ExtraTextBoxLabel.Content = "Gewicht in ML/KG";
+                    LaengeReichweiteTextBox.Visibility = Visibility.Visible;
+                    LaengeReichweiteLabel.Content = "Reichweite";
+                    LaengeReichweiteLabel.Visibility = Visibility.Visible;
+                    BreiteTextBox.Visibility = Visibility.Hidden;
+                    BreiteLabel.Visibility = Visibility.Hidden;
+                    break;
+                case "Tapetenkleister":
+                    ExtraTextBoxLabel.Content = "Gewicht in Gramm";
+                    LaengeReichweiteTextBox.Visibility = Visibility.Visible;
+                    LaengeReichweiteLabel.Content = "Reichweite";
+                    LaengeReichweiteLabel.Visibility = Visibility.Visible;
+                    BreiteTextBox.Visibility = Visibility.Hidden;
+                    BreiteLabel.Visibility = Visibility.Hidden;
+                    break;
+  
             }
         }
 

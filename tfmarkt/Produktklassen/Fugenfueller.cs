@@ -9,27 +9,21 @@ namespace tfmarkt.Produktklassen
    public class Fugenfueller : Zusatzprodukt
     {
         // Attribute
-        public double verbrauch;
 
         // Konstruktor
-        public Fugenfueller(double preis, string name, int artikelnummer, string beschreibung, double verbrauch)
+        public Fugenfueller(decimal preis, string name, int artikelnummer, string beschreibung, double gewicht, double reichweite)
         {
             base.preis = preis;
             base.name = name;
             base.artikelnummer = artikelnummer;
             base.beschreibung = beschreibung;
+            base.gewicht = gewicht;
+            base.reichweite = reichweite;
 
-            this.produkttyp = "fugenfueller";
-            this.verbrauch = verbrauch;
+            this.produkttyp = "Fugenfueller";
         }
 
         public Fugenfueller() { }
 
-        // Get / Set
-        public double Verbrauch
-        {
-            get { return verbrauch; }
-            set { this.verbrauch = value; }
-        }
     }
 }
