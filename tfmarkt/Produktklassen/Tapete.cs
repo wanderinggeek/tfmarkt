@@ -12,13 +12,13 @@ namespace tfmarkt.Produktklassen
     public class Tapete:Produkt
     {
         //Klassen Member
-        public int laenge { get; set; }
-        public int breite { get; set; }
+        public double laenge { get; set; }
+        public double breite { get; set; }
         public double musterversatz { get; set; }
         double flaeche;
 
         //Konstruktor
-        public Tapete(decimal preis, string name, int artikelnummer, string beschreibung, int laenge, int breite, double musterversatz = 0)
+        public Tapete(decimal preis, string name, int artikelnummer, string beschreibung, double laenge, double breite, double musterversatz = 0)
         {
             base.preis = preis;
             base.name = name;

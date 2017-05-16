@@ -25,31 +25,21 @@ namespace tfmarkt
             // GesamtBetragAktualiseren
         }
 
-        public int TapetenBerechnen(double flaeche, Tapete tapete)
+        public int TapetenBerechnen(double flaeche, double wandbreite, double wandhoehe, Tapete tapete)
         {
             // Berechnung Tapeten
+            double benoetigteBahnen = Convert.ToInt32(Math.Ceiling(wandbreite / tapete.breite));
+            double laengeTapetenbahn = wandhoehe + (tapete.musterversatz / 10);
+            double bahnenProTapetenRolle = Convert.ToInt32(Math.Round(tapete.laenge / laengeTapetenbahn, MidpointRounding.ToEven));
+            double benoetigteTapetenRollen = Convert.ToInt32(Math.Ceiling(Convert.ToDecimal(benoetigteBahnen / bahnenProTapetenRolle)));
 
-            double ergebnis = flaeche * 2;
-
-            return Convert.ToInt32(ergebnis);
+            return Convert.ToInt32(benoetigteTapetenRollen);
         }
 
-        public int ZusatzproduktBerechnen(string zusatzprodukt, Tapete tapete)
+        public int TapetenkleisterBerechnen(Tapete tapete, double flaeche, Tapetenkleister tapetenkleister)
         {
-            switch (zusatzprodukt)
-            {
-                case "Tapetenkleister":
-                    // Berechnung für Tapetenkleister
-                    return 2; 
-                case "Fliesenkleber":
-                    // Berechnung für Fliesenkleber
-                    return 0;
-                case "Fugenfueller":
-                    // Berechnung für Fugenfueller
-                    return 0;
-                default:
-                    return 0; // Kann für Fehlerbehandlung benutzt werden
-            }
+            double benoetigtePackungenKleister = flaeche / tapetenkleister.reichweite;
+            return Convert.ToInt32(Math.Ceiling(benoetigtePackungenKleister));
         }
 
         public void GesamtBetragAktualisieren(double betragFuerAktuelleTransaktion, string aktion)
