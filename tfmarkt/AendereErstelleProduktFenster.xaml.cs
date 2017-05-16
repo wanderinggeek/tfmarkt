@@ -57,8 +57,8 @@ namespace tfmarkt
                 string name = ProduktnameTextBox.Text;
                 int artikelnummer = Convert.ToInt32(ArtikelnummerTextBox.Text);
                 string beschreibung = BeschreibungTextBox.Text;
-                int laenge;
-                int breite;
+                double laenge;
+                double breite;
                 double reichweite;
                 int anzahl = Convert.ToInt32(ExtraTextBox.Text);
                 int musterversatz = Convert.ToInt32(ExtraTextBox.Text);
@@ -77,8 +77,8 @@ namespace tfmarkt
                             Close();
                             break;
                         case "Tapete":
-                            laenge = Convert.ToInt32(LaengeReichweiteTextBox.Text);
-                            breite = Convert.ToInt32(BreiteTextBox.Text);
+                            laenge = Convert.ToDouble(LaengeReichweiteTextBox.Text);
+                            breite = Convert.ToDouble(BreiteTextBox.Text);
                             Tapete tapeteZuSpeichern = new Tapete(preis, name, artikelnummer, beschreibung, laenge, breite,musterversatz);
                             produktKatalog.ArtikelSpeichern(tapeteZuSpeichern, aendereArtikel);
                             Close();

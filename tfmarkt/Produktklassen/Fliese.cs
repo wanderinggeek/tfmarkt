@@ -11,13 +11,13 @@ namespace tfmarkt.Produktklassen
     public class Fliese : Produkt
     {
         //Klassenmember
-        public int laenge { get; set; }
-        public int breite { get; set; }
+        public double laenge { get; set; }
+        public double breite { get; set; }
         public int anzahl { get; set; }
         public double flaeche;
 
         //Konstruktor
-        public Fliese(decimal preis, string name, int artikelnummer, string beschreibung, int laenge, int breite, int anzahl)
+        public Fliese(decimal preis, string name, int artikelnummer, string beschreibung, double laenge, double breite, int anzahl)
         {
             base.preis = preis;
             base.name  = name;

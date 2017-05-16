@@ -9,9 +9,9 @@
         <TextBlock Background="AliceBlue"  x:Name="tapeteBeschreibungTextBlock" HorizontalAlignment="Left" Margin="7,39,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Height="70" Width="314"/>
 
         <Label FontSize="14" Content="Raummaße festlegen:" HorizontalAlignment="Left" Margin="0,123,0,0" VerticalAlignment="Top" Height="146" Width="318"/>
-        <Label Content="Raumhöhe" HorizontalAlignment="Left" Margin="7,152,0,0" VerticalAlignment="Top"/>
+        <Label Content="Wandhöhe" HorizontalAlignment="Left" Margin="7,152,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="wandhoeheTapeten" HorizontalAlignment="Left" Height="23" Margin="89,155,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
-        <Label Content="Raumumfang" HorizontalAlignment="Left" Margin="7,184,0,0" VerticalAlignment="Top"/>
+        <Label Content="Wandbreite" HorizontalAlignment="Left" Margin="7,184,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="wandbreiteTapeten" HorizontalAlignment="Left" Height="23" Margin="89,187,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
         <Button Click="BerechnenButton" Content="Berechnen" HorizontalAlignment="Left" Margin="89,226,0,0" VerticalAlignment="Top" Width="75"/>
         <Button x:Name="berechnenButton" Click="BerechnenButton" Content="Berechnen" HorizontalAlignment="Left" Margin="89,226,0,0" VerticalAlignment="Top" Width="75"/>
