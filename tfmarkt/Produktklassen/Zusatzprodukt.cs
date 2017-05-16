@@ -10,7 +10,8 @@ namespace tfmarkt.Produktklassen
     public abstract class Zusatzprodukt : Produkt
     {
         // Attribute
-        public double gewicht;
+        public double gewicht { get; set; }
+        public double reichweite { get; set; }
     }
 
 }

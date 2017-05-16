@@ -1,11 +1,15 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.IO;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using tfmarkt.Produktklassen;
 using System.Xml.Linq;
+using System.Xml.XPath;
 
 
 namespace tfmarkt
@@ -17,7 +21,7 @@ namespace tfmarkt
     {
         public ProduktKatalog produktKatalog;
         public bool aendereArtikel;
-        public BindingList<Produkt> produkteList;
+        public ObservableCollection<Produkt> produkteList;
         public Produkt ausgewaehltesProdukt; 
 
         public Verwaltung()
@@ -25,7 +29,7 @@ namespace tfmarkt
             InitializeComponent();
             this.produktKatalog = new ProduktKatalog();
             this.aendereArtikel = false;
-            this.produkteList = new BindingList<Produkt>();
+            this.produkteList = new ObservableCollection<Produkt>();
             LadeKatalog();
         }
 
@@ -94,6 +98,7 @@ namespace tfmarkt
             {
 
                 ausgewaehltesProdukt = (Produkt)VerwaltungsGrid.SelectedItem;
+                string produkttyp = ausgewaehltesProdukt.produkttyp;
 
                 if (ausgewaehltesProdukt != null)
                 {
@@ -102,9 +107,26 @@ namespace tfmarkt
                     try
                     {
                         XDocument doc = XDocument.Load("produktkatalog.xml");
-                        doc.Descendants(ausgewaehltesProdukt.produkttyp)
-                            .Where(x => x.Element("artikelnummer").Value == artikelnummer)
-                            .Remove();
+                       // File.WriteAllText("produktkatalog.xml", "");
+                        if (produkttyp == "Fliese" || produkttyp == "Tapete")
+                        {
+                            doc.Descendants(produkttyp)
+                                .Where(x => x.Element("artikelnummer").Value == artikelnummer)
+                                .Remove();
+                        }
+                        else
+                        {
+                            IEnumerable<XElement> foo = doc.Root.Elements();
+                            foreach (XElement node in foo)
+                            {
+                                if (node.Element("produkttyp") !=null && node.Element("produkttyp").Value == produkttyp)
+                                {
+                                    node.Remove();
+                                }
+                            }
+                        }
+
+                     
                         doc.Save("produktkatalog.xml");
                         reloadKatalog();
                     }
@@ -127,7 +149,7 @@ namespace tfmarkt
 
         public void reloadKatalog()
         {
-            this.produkteList = new BindingList<Produkt>();
+            this.produkteList = new ObservableCollection<Produkt>();           
             LadeKatalog();
             VerwaltungsGrid.Items.Refresh();
         }

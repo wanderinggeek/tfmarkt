@@ -18,9 +18,9 @@
         <Label Content="Produkttyp" HorizontalAlignment="Left" Margin="213,159,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="ExtraTextBox" HorizontalAlignment="Left" Height="23" Margin="21,187,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
         <Label x:Name="ExtraTextBoxLabel" Content="" HorizontalAlignment="Left" Margin="21,156,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="LaengeTextBox" HorizontalAlignment="Left" Height="23" Margin="21,252,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="LaengeReichweiteTextBox" HorizontalAlignment="Left" Height="23" Margin="21,252,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
         <TextBox x:Name="BreiteTextBox" HorizontalAlignment="Left" Height="23" Margin="213,252,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
-        <Label x:Name="LaengeLabel" Content="Länge" HorizontalAlignment="Left" Margin="21,226,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="LaengeReichweiteLabel" Content="" HorizontalAlignment="Left" Margin="21,226,0,0" VerticalAlignment="Top"/>
         <Label x:Name="BreiteLabel" Content="Breite" HorizontalAlignment="Left" Margin="213,226,0,0" VerticalAlignment="Top"/>
     </Grid>
 </Window>

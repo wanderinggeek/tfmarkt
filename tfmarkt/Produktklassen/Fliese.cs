@@ -17,7 +17,7 @@ namespace tfmarkt.Produktklassen
         public double flaeche;
 
         //Konstruktor
-        public Fliese(double preis, string name, int artikelnummer, string beschreibung, int laenge, int breite, int anzahl)
+        public Fliese(decimal preis, string name, int artikelnummer, string beschreibung, int laenge, int breite, int anzahl)
         {
             base.preis = preis;
             base.name  = name;
