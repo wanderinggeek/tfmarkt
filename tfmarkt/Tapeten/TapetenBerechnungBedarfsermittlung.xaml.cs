@@ -21,16 +21,21 @@ namespace tfmarkt
     /// </summary>
     public partial class TapetenBerechnung : Window
     {
-        ObservableCollection<Produkt> warenkorb;
+        // Attribute
         Tapete tapete;
         Berechnung berechnung;
         MainWindow mainwindow;
+        double wandhoehe;
+        double wandbreite;
+        double flaeche;
+        int anzahlTapetenrollen;
+        int anzahlKleisterpackungen;
 
-        public TapetenBerechnung(ObservableCollection<Produkt> warenkorb, Tapete tapete, MainWindow mainwindow)
+        // Konstruktor
+        public TapetenBerechnung(Tapete tapete, MainWindow mainwindow)
         {
             InitializeComponent();
 
-            this.warenkorb = warenkorb;
             this.tapete = tapete;
             this.berechnung = new Berechnung();
             this.mainwindow = mainwindow;
@@ -43,15 +48,15 @@ namespace tfmarkt
 
         private void BerechnenButton(object sender, RoutedEventArgs e)
         {
-            double wandhoehe = Convert.ToDouble(wandhoeheTapeten.Text);
-            double wandbreite = Convert.ToDouble(wandbreiteTapeten.Text);
-            double flaeche = wandbreite * wandhoehe;
+            this.wandhoehe = Convert.ToDouble(wandhoeheTapeten.Text);
+            this.wandbreite = Convert.ToDouble(wandbreiteTapeten.Text);
+            this.flaeche = wandbreite * wandhoehe;
 
             TapetenBerechnungWindow.Height = 450;
             berechnenButton.Content = "Aktualisieren";
 
-            double anzahlTapetenrollen = berechnung.TapetenBerechnen(flaeche, tapete);
-            int anzahlKleisterpackungen = berechnung.ZusatzproduktBerechnen("Tapetenkleister", this.tapete);
+            this.anzahlTapetenrollen = berechnung.TapetenBerechnen(flaeche, tapete);
+            this.anzahlKleisterpackungen = berechnung.ZusatzproduktBerechnen("Tapetenkleister", this.tapete);
 
             ergebnisBox.Text = "";
             ergebnisBox.Text += "Ausgerechnete Gesamtfläche:\t" + flaeche + " qm²" + "\n";
@@ -64,8 +69,33 @@ namespace tfmarkt
             this.Close();
         }
 
-        private void ProduktDemWarenkorbHinzufuegen(object sender, RoutedEventArgs e)
+        private void TapeteDemWarenkorbHinzufuegen(object sender, RoutedEventArgs e)
         {
+
+            // Prüfen ob sich die Tapeten schon im Warenkorb befindet, wenn ja Anzahl updaten anstatt neu hinzufügen
+            if (mainwindow.warenkorb.Any(x => x.Produkt.name == tapete.name))
+            {
+                var tapeteAusDemWarenkorb = mainwindow.warenkorb.Single(i => i.Produkt.name == tapete.name);
+                tapeteAusDemWarenkorb.Anzahl += this.anzahlTapetenrollen;
+            }
+            else
+            {
+                mainwindow.warenkorb.Add(new WarenkorbObjekt(tapete, this.anzahlTapetenrollen));
+            }
+
+            // Prüfen ob sich der Tapetenkleister schon im Warenkorb befindet, wenn ja Anzahl updaten anstatt neu hinzufügen
+            if (mainwindow.warenkorb.Any(x => x.Produkt.name == mainwindow.produktkatalog.tapetenkleister.name))
+            {
+                var fliesenkleber = mainwindow.warenkorb.Single(i => i.Produkt.name == "Tapetenkleister A");
+                fliesenkleber.Anzahl += this.anzahlKleisterpackungen;
+            }
+            else
+            {
+                mainwindow.warenkorb.Add(new WarenkorbObjekt(mainwindow.produktkatalog.tapetenkleister, this.anzahlKleisterpackungen));
+            }
+
+            mainwindow.Warenkorb.ItemsSource = mainwindow.warenkorb;
+            mainwindow.Warenkorb.Items.Refresh();
             MessageBox.Show("Zum Warenkorb hinzugefügt");
             this.Close();
         }

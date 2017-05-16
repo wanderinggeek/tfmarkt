@@ -25,11 +25,13 @@ namespace tfmarkt
             // GesamtBetragAktualiseren
         }
 
-        public double TapetenBerechnen(double flaeche, Tapete tapete)
+        public int TapetenBerechnen(double flaeche, Tapete tapete)
         {
             // Berechnung Tapeten
 
-            return flaeche * 2;
+            double ergebnis = flaeche * 2;
+
+            return Convert.ToInt32(ergebnis);
         }
 
         public int ZusatzproduktBerechnen(string zusatzprodukt, Tapete tapete)

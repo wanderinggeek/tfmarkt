@@ -21,6 +21,6 @@
             <TextBlock x:Name="ergebnisBox" Background="White" HorizontalAlignment="Left" Margin="9.2,9.2,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" RenderTransformOrigin="0.093,-0.087" Width="314" Height="53"/>
         </Border>
         <Button Content="Abbrechen" Click="Abbrechen" HorizontalAlignment="Left" Margin="14,377,0,0" VerticalAlignment="Top" Width="75"/>
-        <Button Content="Zum Warenkorb hinzufügen" Click="ProduktDemWarenkorbHinzufuegen" HorizontalAlignment="Left" Margin="105,377,0,0" VerticalAlignment="Top" Width="162"/>
+        <Button Content="Zum Warenkorb hinzufügen" Click="TapeteDemWarenkorbHinzufuegen" HorizontalAlignment="Left" Margin="105,377,0,0" VerticalAlignment="Top" Width="162"/>
     </Grid>
 </Window>
