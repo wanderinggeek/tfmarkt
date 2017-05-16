@@ -22,68 +22,76 @@ namespace tfmarkt
     /// </summary>
     public partial class MainWindow : Window
     {
-        public ObservableCollection<Produkt> produkte;
+        public ObservableCollection<Produkt> warenkorb;
         public Verwaltung verwaltungGui;
         public FliesenGUI fliesenGui;
         public TapetenGUI tapetenGui;
         Berechnung berechnung;
+        public ProduktKatalog produktkatalog;
 
         public MainWindow()
         {
             InitializeComponent();
-            GetProdukte();
 
             // Später den Produktkatalog als Parameter für Berechnung übergeben
             this.berechnung = new Berechnung();
+            this.produktkatalog = new ProduktKatalog();
+
+            GetProdukte();
         }
 
         private void Selector_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            //if (TapetenTab.IsSelected)
+            //    {
+            //        if (tapetenGui == null)
+            //        {
+            //           tapetenGui = new TapetenGUI();
+            //        }
+            //        TapetenTab.Content = tapetenGui.Content;
+            //    }
+
+            if (VerwaltungTab.IsSelected)
+                {
+                    if (verwaltungGui == null)
                     {
-                      
-                        if (TapetenTab.IsSelected)
-                            {
-                                if (tapetenGui == null)
-                                {
-                                   tapetenGui = new TapetenGUI();
-                                }
-                                TapetenTab.Content = tapetenGui.Content;
-                            }
-                        if (VerwaltungTab.IsSelected)
-                            {
-                                if (verwaltungGui == null)
-                                {
-                                    verwaltungGui = new Verwaltung();
-                                }
-                                VerwaltungTab.Content = verwaltungGui.Content;
-                            }
-                       if (FliesenTab.IsSelected)
-                            {
-                                if (fliesenGui == null)
-                                {
-                                    fliesenGui = new FliesenGUI();
-                                }
-                                FliesenTab.Content = fliesenGui;
-                            }                    
+                        verwaltungGui = new Verwaltung();
+                    }
+                    VerwaltungTab.Content = verwaltungGui.Content;
+                }
+
+            //if (FliesenTab.IsSelected)
+            //     {
+            //         if (fliesenGui == null)
+            //         {
+            //             fliesenGui = new FliesenGUI();
+            //         }
+            //         FliesenTab.Content = fliesenGui;
+            //     }                    
         }
 
         private void GetProdukte()
         {
             // Liste mit Testdaten, wird im DataGrid des Hauptmenues angezeigt
-            produkte = new ObservableCollection<Produkt>();
-            produkte.Add(new Tapete(1.99, "Fancy Tapete", 11111111, "Hui", 10, 10, 10));
-            produkte.Add(new Tapetenkleister(1.49, "Meister Kleister", 22222222, "Toller Tapetenkleister", 26));
-            produkte.Add(new Fugenfueller(1.49, "Fugenfüller Fugi", 33333333, "Fugenfüller, das Original", 300));
-            produkte.Add(new Fliesenkleber(1.49, "Sticky Fliesenkleber", 44444444, "Klebt super!", 300, true));
-
+            warenkorb = new ObservableCollection<Produkt>();
+            warenkorb.Add(new Tapete(1.99, "Fancy Tapete", 11111111, "Hui", 10, 10, 10));
+            warenkorb.Add(new Tapetenkleister(1.49, "Meister Kleister", 22222222, "Toller Tapetenkleister", 26));
+            warenkorb.Add(new Fugenfueller(1.49, "Fugenfüller Fugi", 33333333, "Fugenfüller, das Original", 300));
+            warenkorb.Add(new Fliesenkleber(1.49, "Sticky Fliesenkleber", 44444444, "Klebt super!", 300, true));
             //produkte.Clear();
-            Warenkorb.ItemsSource = produkte;
+            Warenkorb.ItemsSource = warenkorb;
+
+            // Produktkatalog einlesen
+            produktkatalog = produktkatalog.ProdukteEinlesen();
+            Tapeten.ItemsSource = produktkatalog.tapeten;
+            Fliesen.ItemsSource = produktkatalog.fliesen;
         }
 
-        private void loescheProdukt(object sender, RoutedEventArgs e)
+        private void EntferneProduktAusWarenkorb(object sender, RoutedEventArgs e)
         {
             // Ausgewähltes Produkt aus dem Warenkorb löschen
             Produkt produkt = (Produkt)Warenkorb.SelectedItem;
-            produkte.Remove(produkt);
+            warenkorb.Remove(produkt);
             Warenkorb.Items.Refresh();
 
             // Später ausformulieren: Preis für entfernten Warenkorbposten ermitteln
@@ -100,8 +108,24 @@ namespace tfmarkt
         private void kalkulationAbbrechen(object sender, RoutedEventArgs e)
         {
             // Kalkulation abbrechen, alle Werte auf Standard zurücksetzen
-            produkte.Clear();
+            warenkorb.Clear();
             Warenkorb.Items.Refresh();
+        }
+
+        private void TapetenBerechnungStarten(object sender, RoutedEventArgs e)
+        {
+            // Fenster für Tapetenberechnung öffnen
+            Tapete tapete = (Tapete)Tapeten.SelectedItem;
+
+            TapetenBerechnung tapetenberechnung = new TapetenBerechnung(warenkorb, tapete, this);
+            tapetenberechnung.Show();
+        }
+
+        private void FliesenBerechnungStarten(object sender, RoutedEventArgs e)
+        {
+            // Fenster für Fliesenberechnung öffnen
+            Fliese fliese = (Fliese)Fliesen.SelectedItem;
+            MessageBox.Show(fliese.name);
         }
     }
 }
