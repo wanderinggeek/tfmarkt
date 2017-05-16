@@ -94,6 +94,7 @@
     <Compile Include="Verwaltung.xaml.cs">
       <DependentUpon>Verwaltung.xaml</DependentUpon>
     </Compile>
+    <Compile Include="WarenkorbObjekt.cs" />
     <Page Include="AendereErstelleProduktFenster.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

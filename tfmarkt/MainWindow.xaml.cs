@@ -22,7 +22,7 @@ namespace tfmarkt
     /// </summary>
     public partial class MainWindow : Window
     {
-        public ObservableCollection<Produkt> warenkorb;
+        public ObservableCollection<WarenkorbObjekt> warenkorb;
         public Verwaltung verwaltungGui;
         public FliesenGUI fliesenGui;
         public TapetenGUI tapetenGui;
@@ -73,11 +73,11 @@ namespace tfmarkt
         private void GetProdukte()
         {
             // Liste mit Testdaten, wird im DataGrid des Hauptmenues angezeigt
-            warenkorb = new ObservableCollection<Produkt>();
-            warenkorb.Add(new Tapete(1.99, "Fancy Tapete", 11111111, "Hui", 10, 10, 10));
-            warenkorb.Add(new Tapetenkleister(1.49, "Meister Kleister", 22222222, "Toller Tapetenkleister", 26));
-            warenkorb.Add(new Fugenfueller(1.49, "Fugenfüller Fugi", 33333333, "Fugenfüller, das Original", 300));
-            warenkorb.Add(new Fliesenkleber(1.49, "Sticky Fliesenkleber", 44444444, "Klebt super!", 300, true));
+            warenkorb = new ObservableCollection<WarenkorbObjekt>();
+            //warenkorb.Add(new Tapete(1.99, "Fancy Tapete", 11111111, "Hui", 10, 10, 10));
+            //warenkorb.Add(new Tapetenkleister(1.49, "Meister Kleister", 22222222, "Toller Tapetenkleister", 26));
+            //warenkorb.Add(new Fugenfueller(1.49, "Fugenfüller Fugi", 33333333, "Fugenfüller, das Original", 300));
+            //warenkorb.Add(new Fliesenkleber(1.49, "Sticky Fliesenkleber", 44444444, "Klebt super!", 300, true));
             //produkte.Clear();
             Warenkorb.ItemsSource = warenkorb;
 
@@ -90,8 +90,8 @@ namespace tfmarkt
         private void EntferneProduktAusWarenkorb(object sender, RoutedEventArgs e)
         {
             // Ausgewähltes Produkt aus dem Warenkorb löschen
-            Produkt produkt = (Produkt)Warenkorb.SelectedItem;
-            warenkorb.Remove(produkt);
+            WarenkorbObjekt warenkorbObjekt = (WarenkorbObjekt)Warenkorb.SelectedItem;
+            warenkorb.Remove(warenkorbObjekt);
             Warenkorb.Items.Refresh();
 
             // Später ausformulieren: Preis für entfernten Warenkorbposten ermitteln
@@ -117,7 +117,7 @@ namespace tfmarkt
             // Fenster für Tapetenberechnung öffnen
             Tapete tapete = (Tapete)Tapeten.SelectedItem;
 
-            TapetenBerechnung tapetenberechnung = new TapetenBerechnung(warenkorb, tapete, this);
+            TapetenBerechnung tapetenberechnung = new TapetenBerechnung(tapete, this);
             tapetenberechnung.Show();
         }
 
