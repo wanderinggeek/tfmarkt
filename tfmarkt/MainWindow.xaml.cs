@@ -14,6 +14,8 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Collections.ObjectModel;
 using tfmarkt.Produktklassen;
+using System.Xml.Serialization;
+using System.IO;
 
 namespace tfmarkt
 {
@@ -42,6 +44,19 @@ namespace tfmarkt
             produktkatalog = produktkatalog.ProdukteEinlesen();
             Tapeten.ItemsSource = produktkatalog.tapeten;
             Fliesen.ItemsSource = produktkatalog.fliesen;
+
+            // Test
+            //this.warenkorb.Add(new WarenkorbObjekt(new Tapete(5.99m, "GesamtrechnungTest", 12345678, "Blabla", 10.05, 0.53, 0.72), 2));
+            //this.warenkorb.Add(new WarenkorbObjekt(new Tapete(5.99m, "GesamtrechnungTest", 12345678, "Blabla", 10.05, 0.53, 0.72), 2));
+            //this.warenkorb.Add(new WarenkorbObjekt(new Tapete(5.99m, "GesamtrechnungTest", 12345678, "Blabla", 10.05, 0.53, 0.72), 2));
+            //this.warenkorb.Add(new WarenkorbObjekt(new Tapete(5.99m, "GesamtrechnungTest", 12345678, "Blabla", 10.05, 0.53, 0.72), 2));
+            //this.warenkorb.Add(new WarenkorbObjekt(new Tapete(5.99m, "GesamtrechnungTest", 12345678, "Blabla", 10.05, 0.53, 0.72), 2));
+            //this.warenkorb.Add(new WarenkorbObjekt(new Tapete(5.99m, "GesamtrechnungTest", 12345678, "Blabla", 10.05, 0.53, 0.72), 2));
+            //this.warenkorb.Add(new WarenkorbObjekt(new Tapete(5.99m, "GesamtrechnungTest", 12345678, "Blabla", 10.05, 0.53, 0.72), 2));
+            //this.warenkorb.Add(new WarenkorbObjekt(new Tapete(5.99m, "GesamtrechnungTest", 12345678, "Blabla", 10.05, 0.53, 0.72), 2));
+            //this.warenkorb.Add(new WarenkorbObjekt(new Tapete(5.99m, "GesamtrechnungTest", 12345678, "Blabla", 10.05, 0.53, 0.72), 2));
+            
+            //this.Warenkorb.ItemsSource = this.warenkorb;
         }
 
         private void Selector_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -114,17 +129,47 @@ namespace tfmarkt
             {
                 // Gesamtrechnung erstellen
                 decimal gesamtbetrag = berechnung.GesamtbetragBerechnen(warenkorb);
-                MessageBox.Show(gesamtbetrag.ToString("##.##"));
-
-                // Test
                 decimal mehrwertsteuer = berechnung.SteuerBerechnen(gesamtbetrag);
-                MessageBox.Show(mehrwertsteuer.ToString("##.##"));               
+
+                Gesamtrechnung gesamtrechnung = new Gesamtrechnung(warenkorb, gesamtbetrag, mehrwertsteuer);
+                gesamtrechnung.Top = this.Top - 100;
+                gesamtrechnung.Left = this.Left + 50;
+                gesamtrechnung.Show();
             }
             else
             {
                 MessageBox.Show("Keine Produkte im Warenkorb vorhanden");
             }
+        }
 
+        private void WarenkorbSpeichern(object sender, RoutedEventArgs e)
+        {
+            if (warenkorb.Count >= 1)
+            {
+                //XmlSerializer xs = new XmlSerializer(typeof(WarenkorbObjekt));
+                //using (StreamWriter wr = new StreamWriter("warenkorb.xml"))
+                //{
+                //    xs.Serialize(wr, warenkorb);
+                //}
+                Type[] typen = {
+                                   typeof(Produkt), 
+                                   typeof(Tapete),
+                                   typeof(Tapetenkleister)
+                                 
+                               };
+
+                var serializer = new XmlSerializer(
+                    typeof(ObservableCollection<WarenkorbObjekt>),
+                    typen
+                );
+                TextWriter writer = new StreamWriter("warenkorb.xml");
+                serializer.Serialize(writer, warenkorb);
+                writer.Close();
+            }
+            else
+            {
+                MessageBox.Show("Keine Produkte im Warenkorb vorhanden");
+            }
         }
 
         private void TapetenBerechnungStarten(object sender, RoutedEventArgs e)
