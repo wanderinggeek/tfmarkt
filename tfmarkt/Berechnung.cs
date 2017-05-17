@@ -27,7 +27,7 @@ namespace tfmarkt
 
             int benoetigteFliesen = (int)Math.Ceiling(flaecheinZm / flieseGroesse);
 
-            int benoetigtePakete = benoetigteFliesen / fliese.anzahl;
+            int benoetigtePakete = (int)Math.Ceiling((double)benoetigteFliesen / fliese.anzahl);
 
 
             return benoetigtePakete;

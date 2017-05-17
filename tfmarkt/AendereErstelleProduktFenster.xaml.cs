@@ -246,7 +246,7 @@ namespace tfmarkt
                 case "Fliesenkleber":
                     ExtraTextBoxLabel.Content = "Gewicht in KG";
                     LaengeReichweiteTextBox.Visibility = Visibility.Visible;
-                    LaengeReichweiteLabel.Content = "Reichweite";
+                    LaengeReichweiteLabel.Content = "Reichweite in M";
                     LaengeReichweiteLabel.Visibility = Visibility.Visible;
                     BreiteTextBox.Visibility = Visibility.Hidden;
                     BreiteLabel.Visibility = Visibility.Hidden;
@@ -254,7 +254,7 @@ namespace tfmarkt
                 case"Fugenfüller":
                     ExtraTextBoxLabel.Content = "Gewicht in ML/KG";
                     LaengeReichweiteTextBox.Visibility = Visibility.Visible;
-                    LaengeReichweiteLabel.Content = "Reichweite";
+                    LaengeReichweiteLabel.Content = "Reichweite in M";
                     LaengeReichweiteLabel.Visibility = Visibility.Visible;
                     BreiteTextBox.Visibility = Visibility.Hidden;
                     BreiteLabel.Visibility = Visibility.Hidden;
@@ -262,7 +262,7 @@ namespace tfmarkt
                 case "Tapetenkleister":
                     ExtraTextBoxLabel.Content = "Gewicht in Gramm";
                     LaengeReichweiteTextBox.Visibility = Visibility.Visible;
-                    LaengeReichweiteLabel.Content = "Reichweite";
+                    LaengeReichweiteLabel.Content = "Reichweite in M";
                     LaengeReichweiteLabel.Visibility = Visibility.Visible;
                     BreiteTextBox.Visibility = Visibility.Hidden;
                     BreiteLabel.Visibility = Visibility.Hidden;
