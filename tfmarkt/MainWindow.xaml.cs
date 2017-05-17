@@ -15,6 +15,9 @@ using System.Windows.Shapes;
 using System.Collections.ObjectModel;
 using tfmarkt.Fliesen;
 using tfmarkt.Produktklassen;
+using System.Xml.Serialization;
+using System.IO;
+using Microsoft.Win32;
 
 namespace tfmarkt
 {
@@ -146,17 +149,86 @@ namespace tfmarkt
             {
                 // Gesamtrechnung erstellen
                 decimal gesamtbetrag = berechnung.GesamtbetragBerechnen(warenkorb);
-                MessageBox.Show(gesamtbetrag.ToString("##.##"));
-
-                // Test
                 decimal mehrwertsteuer = berechnung.SteuerBerechnen(gesamtbetrag);
-                MessageBox.Show(mehrwertsteuer.ToString("##.##"));               
+
+                Gesamtrechnung gesamtrechnung = new Gesamtrechnung(warenkorb, gesamtbetrag, mehrwertsteuer);
+                gesamtrechnung.Top = this.Top - 100;
+                gesamtrechnung.Left = this.Left + 50;
+                gesamtrechnung.Show();
             }
             else
             {
                 MessageBox.Show("Keine Produkte im Warenkorb vorhanden");
             }
+        }
 
+        private void WarenkorbSpeichern(object sender, RoutedEventArgs e)
+        {
+            if (warenkorb.Count >= 1)
+            {
+                SaveFileDialog dialog = new SaveFileDialog()
+                {
+                    Filter = "XML Datei(*.xml)|*.xml"
+                };
+
+                if (dialog.ShowDialog() == true)
+                {
+                    Type[] typen = {
+                                   typeof(Produkt), 
+                                   typeof(Tapete),
+                                   typeof(Tapetenkleister),
+                                   typeof(Fliese),
+                                   typeof(Fugenfueller),
+                                   typeof(Fliesenkleber)
+                               };
+
+                    var serializer = new XmlSerializer(
+                        typeof(ObservableCollection<WarenkorbObjekt>),
+                        typen
+                    );
+                    TextWriter writer = new StreamWriter(dialog.FileName);
+                    serializer.Serialize(writer, warenkorb);
+                    writer.Close();
+                }
+            }
+            else
+            {
+                MessageBox.Show("Keine Produkte im Warenkorb vorhanden");
+            }
+        }
+
+        private void WarenkorbLaden(object sender, RoutedEventArgs e)
+        {
+
+            warenkorb.Clear();
+
+            OpenFileDialog dialog = new OpenFileDialog()
+            {
+                Filter = "XML Datei(*.xml)|*.xml"
+            };
+
+            if (dialog.ShowDialog() == true)
+            {
+                Type[] typen = {
+                                typeof(Produkt), 
+                                typeof(Tapete),
+                                typeof(Tapetenkleister),
+                                typeof(Fliese),
+                                typeof(Fugenfueller),
+                                typeof(Fliesenkleber)
+                            };
+
+                var serializer = new XmlSerializer(
+                    typeof(ObservableCollection<WarenkorbObjekt>),
+                    typen
+                );
+                FileStream writer = new FileStream(dialog.FileName, FileMode.Open);
+                //serializer.Serialize(reader, warenkorb);
+                warenkorb = (ObservableCollection<WarenkorbObjekt>)serializer.Deserialize(writer);
+                writer.Close();
+                this.Warenkorb.ItemsSource = warenkorb;
+                this.Warenkorb.Items.Refresh();
+            }
         }
 
         private void TapetenBerechnungStarten(object sender, RoutedEventArgs e)
@@ -200,6 +272,16 @@ namespace tfmarkt
             {
                 MessageBox.Show("Keine Fliese ausgewählt");
             }
+        }
+
+        public void InfoAnzeigen(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("TF-Kalkulation\nVersion: 0.99");
+        }
+
+        public void ProgrammBeenden(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
     }
 }

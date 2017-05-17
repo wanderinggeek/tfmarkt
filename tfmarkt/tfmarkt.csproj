@@ -76,7 +76,10 @@
     <Compile Include="Fliesen\FliesenBerechnungBedarfsermittlung.xaml.cs">
       <DependentUpon>FliesenBerechnungBedarfsermittlung.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Passwortdialog.xaml.cs">
+    <Compile Include="Gesamtrechnung.xaml.cs">
+      <DependentUpon>Gesamtrechnung.xaml</DependentUpon>
+	</Compile>
+	<Compile Include="Passwortdialog.xaml.cs">
       <DependentUpon>Passwortdialog.xaml</DependentUpon>
     </Compile>
     <Compile Include="Produktkatalog.cs" />
@@ -100,6 +103,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Fliesen\FliesenBerechnungBedarfsermittlung.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Gesamtrechnung.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

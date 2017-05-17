@@ -10,7 +10,7 @@ namespace tfmarkt
     public class WarenkorbObjekt
     {
         // Attribute
-        Produkt produkt;
+        public Produkt produkt;
         int anzahl;
 
         // Konstruktor
@@ -18,6 +18,11 @@ namespace tfmarkt
         {
             this.produkt = produkt;
             this.anzahl = anzahl;
+        }
+
+        public WarenkorbObjekt()
+        {
+
         }
 
         // Get / Set
