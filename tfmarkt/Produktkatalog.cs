@@ -57,94 +57,96 @@ namespace tfmarkt
             string dataTypeString = returnType.ToString();
             try
             {
-                if (!artikelnummern.Contains(artikel.artikelnummer) && !aendereArtikel)
+                var test = artikelnummern.Contains(artikel.artikelnummer);
+                if (!artikelnummern.Contains(artikel.artikelnummer))
                 {
-                    //save and add to artikelnummern
-
-                    switch (dataTypeString)
+                    if (!aendereArtikel)
                     {
-                        case "tfmarkt.Produktklassen.Fliese":
-                            this.fliesen.Add(artikel);                        
-                            this.artikelnummern.Add(artikel.artikelnummer);
-                            MessageBox.Show("Fliese hinzugefügt");
-                            break;
-                        case "tfmarkt.Produktklassen.Tapete":
-                            this.tapeten.Add(artikel);
-                           this.artikelnummern.Add(artikel.artikelnummer);
-                            MessageBox.Show("Tapete hinzugefügt");
-                            break;
-                        case "tfmarkt.Produktklassen.Fliesenkleber":
-                            this.fliesenkleber = artikel;
-                            this.artikelnummern.Add(artikel.artikelnummer);
-                            MessageBox.Show("Fliesenkleber hinzugefügt");
-                            break;
-                        case "tfmarkt.Produktklassen.Fugenfueller":
-                            this.fugenfueller = artikel;
-                            this.artikelnummern.Add(artikel.artikelnummer);
-                            MessageBox.Show("Fuegenfueller hinzugefügt");
-                            break;
-                        case "tfmarkt.Produktklassen.Tapetenkleister":
-                            this.tapetenkleister = artikel;
-                            this.artikelnummern.Add(artikel.artikelnummer);
-                            MessageBox.Show("Tapetenkleister hinzugefügt");
-                            break;
+                        switch (dataTypeString)
+                        {
+                            case "tfmarkt.Produktklassen.Fliese":
+                                this.fliesen.Add(artikel);
+                                this.artikelnummern.Add(artikel.artikelnummer);
+                                MessageBox.Show("Fliese hinzugefügt");
+                                break;
+                            case "tfmarkt.Produktklassen.Tapete":
+                                this.tapeten.Add(artikel);
+                                this.artikelnummern.Add(artikel.artikelnummer);
+                                MessageBox.Show("Tapete hinzugefügt");
+                                break;
+                            case "tfmarkt.Produktklassen.Fliesenkleber":
+                                this.fliesenkleber = artikel;
+                                this.artikelnummern.Add(artikel.artikelnummer);
+                                MessageBox.Show("Fliesenkleber hinzugefügt");
+                                break;
+                            case "tfmarkt.Produktklassen.Fugenfueller":
+                                this.fugenfueller = artikel;
+                                this.artikelnummern.Add(artikel.artikelnummer);
+                                MessageBox.Show("Fuegenfueller hinzugefügt");
+                                break;
+                            case "tfmarkt.Produktklassen.Tapetenkleister":
+                                this.tapetenkleister = artikel;
+                                this.artikelnummern.Add(artikel.artikelnummer);
+                                MessageBox.Show("Tapetenkleister hinzugefügt");
+                                break;
+                        }
+                    }
+                    if (aendereArtikel)
+                    {
+                        switch (dataTypeString)
+                        {
+                            case "tfmarkt.Produktklassen.Fliese":
+                                this.fliesen.Add(artikel);
+                                Fliese alteFliese = this.fliesen.Find(x => x.artikelnummer == alteArtikelnummer);
+                                this.fliesen.Remove(alteFliese);
+                                if (alteArtikelnummer != artikel.artikelnummer)
+                                {
+                                    this.artikelnummern.Add(artikel.artikelnummer);
+                                }
+                                MessageBox.Show("Fliese wurde geändert");
+                                break;
+                            case "tfmarkt.Produktklassen.Tapete":
+                                this.tapeten.Add(artikel);
+                                Tapete alteTapete = this.tapeten.Find(x => x.artikelnummer == alteArtikelnummer);
+                                this.tapeten.Remove(alteTapete);
+                                if (alteArtikelnummer != artikel.artikelnummer)
+                                {
+                                    this.artikelnummern.Add(artikel.artikelnummer);
+                                }
+                                MessageBox.Show("Tapete wurde geändert");
+                                break;
+                            case "tfmarkt.Produktklassen.Fliesenkleber":
+                                this.fliesenkleber = artikel;
+                                if (alteArtikelnummer != artikel.artikelnummer)
+                                {
+                                    this.artikelnummern.Add(artikel.artikelnummer);
+                                }
+                                MessageBox.Show("Fliesenkleber wurde geändert");
+                                break;
+                            case "tfmarkt.Produktklassen.Fugenfueller":
+                                this.fugenfueller = artikel;
+                                if (alteArtikelnummer != artikel.artikelnummer)
+                                {
+                                    this.artikelnummern.Add(artikel.artikelnummer);
+                                }
+                                MessageBox.Show("Fuegenfueller wurde geändert");
+                                break;
+                            case "tfmarkt.Produktklassen.Tapetenkleister":
+                                this.tapetenkleister = artikel;
+                                if (alteArtikelnummer != artikel.artikelnummer)
+                                {
+                                    this.artikelnummern.Add(artikel.artikelnummer);
+                                }
+                                MessageBox.Show("Tapetenkleister wurde geändert");
+                                break;
+                        }
                     }
 
                 }
-                else if (aendereArtikel)
-                {
-                   
-                    switch (dataTypeString)
-                    {
-                        case "tfmarkt.Produktklassen.Fliese":
-                            this.fliesen.Add(artikel);
-                            Fliese alteFliese = this.fliesen.Find(x => x.artikelnummer == alteArtikelnummer);
-                            this.fliesen.Remove(alteFliese);
-                            if (alteArtikelnummer != artikel.artikelnummer)
-                            {
-                                this.artikelnummern.Add(artikel.artikelnummer);
-                            }
-                            MessageBox.Show("Fliese wurde geändert");
-                            break;
-                        case "tfmarkt.Produktklassen.Tapete":
-                            this.tapeten.Add(artikel);
-                            Tapete alteTapete = this.tapeten.Find(x => x.artikelnummer == alteArtikelnummer);
-                            this.tapeten.Remove(alteTapete);
-                            if (alteArtikelnummer != artikel.artikelnummer)
-                            {
-                                this.artikelnummern.Add(artikel.artikelnummer);
-                            }                            
-                            MessageBox.Show("Tapete wurde geändert");
-                            break;
-                        case "tfmarkt.Produktklassen.Fliesenkleber":
-                            this.fliesenkleber = artikel;
-                            if (alteArtikelnummer != artikel.artikelnummer)
-                            {
-                                this.artikelnummern.Add(artikel.artikelnummer);
-                            }    
-                            MessageBox.Show("Fliesenkleber wurde geändert");
-                            break;
-                        case "tfmarkt.Produktklassen.Fugenfueller":
-                            this.fugenfueller = artikel;
-                            if (alteArtikelnummer != artikel.artikelnummer)
-                            {
-                                this.artikelnummern.Add(artikel.artikelnummer);
-                            }                       
-                            MessageBox.Show("Fuegenfueller wurde geändert");
-                            break;
-                        case "tfmarkt.Produktklassen.Tapetenkleister":
-                            this.tapetenkleister = artikel;
-                            if (alteArtikelnummer != artikel.artikelnummer)
-                            {
-                                this.artikelnummern.Add(artikel.artikelnummer);
-                            }                          
-                            MessageBox.Show("Tapetenkleister wurde geändert");
-                            break;
-                    }
-                }
+                
                 else
                 {
-                    MessageBox.Show("Ein Produkt mit der Artikelnummer: " + artikel.artikelnummer.ToString() + " ist schon im System");
+                    MessageBox.Show("Ein Produkt mit der Artikelnummer " + artikel.artikelnummer.ToString() + " ist schon im System");
                 }
 
                 var serializer = new XmlSerializer(typeof(ProduktKatalog));

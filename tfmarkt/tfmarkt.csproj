@@ -73,6 +73,9 @@
     <Compile Include="AendereErstelleProduktFenster.xaml.cs">
       <DependentUpon>AendereErstelleProduktFenster.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Passwortdialog.xaml.cs">
+      <DependentUpon>Passwortdialog.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Produktkatalog.cs" />
     <Compile Include="Produktklassen\Fliese.cs" />
     <Compile Include="Berechnung.cs" />
@@ -115,6 +118,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Passwortdialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Tapeten\TapetenBerechnungBedarfsermittlung.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
