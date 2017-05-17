@@ -27,10 +27,10 @@ namespace tfmarkt
 
             int benoetigteFliesen = (int)Math.Ceiling(flaecheinZm / flieseGroesse);
 
-            int benoetigtePakete = (int)Math.Ceiling((double)benoetigteFliesen / fliese.anzahl);
+            int benoetigteFlieseninQm = (int)Math.Ceiling((double)(benoetigteFliesen * flieseGroesse) / 100);
 
 
-            return benoetigtePakete;
+            return benoetigteFlieseninQm;
         }
 
         public int FugenfuellerBerechnen(double flaeche, Fugenfueller fugenfueller)

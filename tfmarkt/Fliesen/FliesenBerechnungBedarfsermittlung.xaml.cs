@@ -109,7 +109,7 @@ namespace tfmarkt.Fliesen
 
                 ergebnisBox.Text = "";
                 ergebnisBox.Text += "Gesamtfläche des Bodens:\t\t" + flaeche + " m²" + "\n";
-                ergebnisBox.Text += "Notwendige Fliesenpakete:\t\t" + anzahlFliesenpakete + " Stück\n";
+                ergebnisBox.Text += "Notwendige Fliesen:\t\t" + anzahlFliesenpakete + " m² \n";
                 ergebnisBox.Text += "Notwendige Fugenfüller: \t\t"  + anzahlFugenfueller + " Stück\n";
                 if (fliesenkleberSelected)
                 {
