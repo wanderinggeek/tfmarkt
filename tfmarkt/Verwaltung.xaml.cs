@@ -186,7 +186,8 @@ namespace tfmarkt
 
         public void reloadKatalog()
         {
-            this.produkteList = new ObservableCollection<Produkt>();           
+            this.produkteList = new ObservableCollection<Produkt>();    
+            mainWindow.loadProduktkatalog();
             LadeKatalog();
             VerwaltungsGrid.Items.Refresh();
         }

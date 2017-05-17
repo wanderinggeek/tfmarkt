@@ -73,10 +73,13 @@
     <Compile Include="AendereErstelleProduktFenster.xaml.cs">
       <DependentUpon>AendereErstelleProduktFenster.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Fliesen\FliesenBerechnungBedarfsermittlung.xaml.cs">
+      <DependentUpon>FliesenBerechnungBedarfsermittlung.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Gesamtrechnung.xaml.cs">
       <DependentUpon>Gesamtrechnung.xaml</DependentUpon>
 	</Compile>
-    <Compile Include="Passwortdialog.xaml.cs">
+	<Compile Include="Passwortdialog.xaml.cs">
       <DependentUpon>Passwortdialog.xaml</DependentUpon>
     </Compile>
     <Compile Include="Produktkatalog.cs" />
@@ -86,16 +89,10 @@
     <Compile Include="Produktklassen\Fugenfueller.cs" />
     <Compile Include="Produktklassen\Produkt.cs" />
     <Compile Include="Produktklassen\Tapete.cs" />
-    <Compile Include="FliesenGUI.xaml.cs">
-      <DependentUpon>FliesenGUI.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Produktklassen\Tapetenkleister.cs" />
     <Compile Include="Produktklassen\Zusatzprodukt.cs" />
     <Compile Include="Tapeten\TapetenBerechnungBedarfsermittlung.xaml.cs">
       <DependentUpon>TapetenBerechnungBedarfsermittlung.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="TapetenGUI.xaml.cs">
-      <DependentUpon>TapetenGUI.xaml</DependentUpon>
     </Compile>
     <Compile Include="Verwaltung.xaml.cs">
       <DependentUpon>Verwaltung.xaml</DependentUpon>
@@ -105,7 +102,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="FliesenGUI.xaml">
+    <Page Include="Fliesen\FliesenBerechnungBedarfsermittlung.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -130,10 +127,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Tapeten\TapetenBerechnungBedarfsermittlung.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="TapetenGUI.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

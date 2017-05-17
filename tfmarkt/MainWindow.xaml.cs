@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Collections.ObjectModel;
+using tfmarkt.Fliesen;
 using tfmarkt.Produktklassen;
 using System.Xml.Serialization;
 using System.IO;
@@ -27,8 +28,6 @@ namespace tfmarkt
     {
         public ObservableCollection<WarenkorbObjekt> warenkorb;
         public Verwaltung verwaltungGui;
-        public FliesenGUI fliesenGui;
-        public TapetenGUI tapetenGui;
         Berechnung berechnung;
         public ProduktKatalog produktkatalog;
         public Passwortdialog passwortdialog;
@@ -47,6 +46,7 @@ namespace tfmarkt
             produktkatalog = produktkatalog.ProdukteEinlesen();
             Tapeten.ItemsSource = produktkatalog.tapeten;
             Fliesen.ItemsSource = produktkatalog.fliesen;
+
         }
 
         private void Selector_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -77,6 +77,15 @@ namespace tfmarkt
         {
             verwaltungGui = new Verwaltung(this);
             VerwaltungTab.Content = verwaltungGui.Content;
+        }
+
+        public void loadProduktkatalog()
+        {
+            produktkatalog = produktkatalog.ProdukteEinlesen();
+            this.Tapeten.ItemsSource = produktkatalog.tapeten;
+            this.Fliesen.ItemsSource = produktkatalog.fliesen;
+            this.Tapeten.Items.Refresh();
+            this.Fliesen.Items.Refresh();
         }
 
         private void EntferneProduktAusWarenkorb(object sender, RoutedEventArgs e)
@@ -246,8 +255,23 @@ namespace tfmarkt
         private void FliesenBerechnungStarten(object sender, RoutedEventArgs e)
         {
             // Fenster für Fliesenberechnung öffnen
-            Fliese fliese = (Fliese)Fliesen.SelectedItem;
-            MessageBox.Show(fliese.name);
+            if (Fliesen.SelectedIndex != -1)
+            {
+                // Fenster für Tapetenberechnung öffnen
+                Fliese fliese = (Fliese)Fliesen.SelectedItem;
+
+                FliesenBerechnungBedarfsermittlung fliesenberechnung = new FliesenBerechnungBedarfsermittlung(fliese, this);
+
+                // Position des Popup Fenster relativ zum Hauptfenster setzen
+                fliesenberechnung.Top = this.Top + 140;
+                fliesenberechnung.Left = this.Left + 230;
+
+                fliesenberechnung.Show();
+            }
+            else
+            {
+                MessageBox.Show("Keine Fliese ausgewählt");
+            }
         }
 
         public void InfoAnzeigen(object sender, RoutedEventArgs e)
