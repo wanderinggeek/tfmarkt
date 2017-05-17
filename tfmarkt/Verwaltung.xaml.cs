@@ -77,27 +77,35 @@ namespace tfmarkt
         }
         //Erstelle neues Produkt
         private void produktAnlegen(object sender, RoutedEventArgs e)
-        {   
+        {
+            this.aendereArtikel = false;
             AendereErstelleProduktFenster erstelleProduktFenster = new AendereErstelleProduktFenster(aendereArtikel, produktKatalog, this);
-            erstelleProduktFenster.Show();
-                                
+            erstelleProduktFenster.Show();                               
         }
 
 
-        //Ändere Produkt geht noch nicht
+        //Ändere Produkt 
         public void produktAendern(object sender, RoutedEventArgs e)
         {
             ausgewaehltesProdukt = (Produkt)VerwaltungsGrid.SelectedItem;
-            aendereArtikel = true;
-            AendereErstelleProduktFenster erstelleProduktFenster = new AendereErstelleProduktFenster(aendereArtikel, produktKatalog, this, ausgewaehltesProdukt);
+            this.aendereArtikel = true;
+            AendereErstelleProduktFenster erstelleProduktFenster = new AendereErstelleProduktFenster(this.aendereArtikel, produktKatalog, this, ausgewaehltesProdukt);
             erstelleProduktFenster.Show();
         }
-        //Lösche Produkt geht nicht mit Zusatzprodukten
+        //Lösche Produkt 
         public void produktLoeschen(object sender, RoutedEventArgs e)
         {
             {
+                if (!aendereArtikel)
+                {
+                    ausgewaehltesProdukt = (Produkt) VerwaltungsGrid.SelectedItem;
 
-                ausgewaehltesProdukt = (Produkt)VerwaltungsGrid.SelectedItem;
+                }
+                else
+                {
+                    ausgewaehltesProdukt = ausgewaehltesProdukt;
+                }
+
                 string produkttyp = ausgewaehltesProdukt.produkttyp;
 
                 if (ausgewaehltesProdukt != null)
@@ -107,12 +115,12 @@ namespace tfmarkt
                     try
                     {
                         XDocument doc = XDocument.Load("produktkatalog.xml");
-                       // File.WriteAllText("produktkatalog.xml", "");
                         if (produkttyp == "Fliese" || produkttyp == "Tapete")
                         {
-                            doc.Descendants(produkttyp)
-                                .Where(x => x.Element("artikelnummer").Value == artikelnummer)
-                                .Remove();
+                            var xElements = doc.Descendants(produkttyp)
+                                .Where(x => x.Element("artikelnummer").Value == artikelnummer);
+
+                            xElements.Remove();
                         }
                         else
                         {
@@ -126,19 +134,31 @@ namespace tfmarkt
                             }
                         }
 
-                     
+                        produktKatalog.artikelnummern.Remove(ausgewaehltesProdukt.artikelnummer);
+
                         doc.Save("produktkatalog.xml");
-                        reloadKatalog();
+                        if (!aendereArtikel)
+                        {
+                            reloadKatalog();
+                        }
                     }
                     catch (Exception exception)
                     {
                         MessageBox.Show(exception.Message);
                     }
 
+
                 }
             }
           
         
+        }
+
+        //nur zum testen
+        private void deleteXmlDoc()
+        {
+            File.WriteAllText("produktkatalog.xml", "");
+
         }
 
         private void VerwaltungsGrid_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
