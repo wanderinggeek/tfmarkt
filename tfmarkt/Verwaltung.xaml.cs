@@ -5,6 +5,7 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.IO;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Windows;
 using System.Windows.Controls;
 using tfmarkt.Produktklassen;
@@ -19,14 +20,16 @@ namespace tfmarkt
     /// </summary>
     public partial class Verwaltung : UserControl
     {
+        public MainWindow mainWindow;
         public ProduktKatalog produktKatalog;
         public bool aendereArtikel;
         public ObservableCollection<Produkt> produkteList;
         public Produkt ausgewaehltesProdukt; 
 
-        public Verwaltung()
+        public Verwaltung(MainWindow mainWindow)
         {
             InitializeComponent();
+            this.mainWindow = mainWindow;
             this.produktKatalog = new ProduktKatalog();
             this.aendereArtikel = false;
             this.produkteList = new ObservableCollection<Produkt>();
@@ -80,6 +83,11 @@ namespace tfmarkt
         {
             this.aendereArtikel = false;
             AendereErstelleProduktFenster erstelleProduktFenster = new AendereErstelleProduktFenster(aendereArtikel, produktKatalog, this);
+
+            // Position des Popup Fenster relativ zum Hauptfenster setzen
+            erstelleProduktFenster.Top =  mainWindow.Top + 140;
+            erstelleProduktFenster.Left = mainWindow.Left + 220;
+
             erstelleProduktFenster.Show();                               
         }
 
@@ -87,10 +95,23 @@ namespace tfmarkt
         //Ändere Produkt 
         public void produktAendern(object sender, RoutedEventArgs e)
         {
-            ausgewaehltesProdukt = (Produkt)VerwaltungsGrid.SelectedItem;
-            this.aendereArtikel = true;
-            AendereErstelleProduktFenster erstelleProduktFenster = new AendereErstelleProduktFenster(this.aendereArtikel, produktKatalog, this, ausgewaehltesProdukt);
-            erstelleProduktFenster.Show();
+         
+            if (ausgewaehltesProdukt != null)
+            {
+                ausgewaehltesProdukt = (Produkt) VerwaltungsGrid.SelectedItem;
+                this.aendereArtikel = true;
+                AendereErstelleProduktFenster erstelleProduktFenster = new AendereErstelleProduktFenster(this.aendereArtikel, produktKatalog, this, ausgewaehltesProdukt);
+         
+                // Position des Popup Fenster relativ zum Hauptfenster setzen
+                erstelleProduktFenster.Top = mainWindow.Top + 140;
+                erstelleProduktFenster.Left = mainWindow.Left + 220;
+                erstelleProduktFenster.Show();
+            }
+            else
+            {
+                MessageBox.Show("Wählen Sie ein Produkt aus!");
+            }
+          
         }
         //Lösche Produkt 
         public void produktLoeschen(object sender, RoutedEventArgs e)
