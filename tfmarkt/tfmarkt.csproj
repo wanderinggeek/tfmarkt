@@ -73,6 +73,8 @@
     <Compile Include="AendereErstelleProduktFenster.xaml.cs">
       <DependentUpon>AendereErstelleProduktFenster.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Gesamtrechnung.xaml.cs">
+      <DependentUpon>Gesamtrechnung.xaml</DependentUpon>
     <Compile Include="Passwortdialog.xaml.cs">
       <DependentUpon>Passwortdialog.xaml</DependentUpon>
     </Compile>
@@ -103,6 +105,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="FliesenGUI.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Gesamtrechnung.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

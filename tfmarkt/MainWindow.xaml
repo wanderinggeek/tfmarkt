@@ -23,6 +23,7 @@
                     <Button Padding="5" Click="EntferneProduktAusWarenkorb" Content="Produkt entfernen" HorizontalAlignment="Left" Margin="22,504,0,0" VerticalAlignment="Top" Width="117"/>
                     <Button Padding="5" Click="erstelleGesamtrechnung" Content="Gesamtrechnung erstellen" HorizontalAlignment="Left" Margin="604,504,0,0" VerticalAlignment="Top" Width="165"/>
                     <Button Padding="5" Click="WarenkorbLoeschen" Content="Warenkorb löschen" HorizontalAlignment="Left" Margin="426,504,0,0" VerticalAlignment="Top" Width="165"/>
+                    <Button Padding="5" Click="WarenkorbSpeichern" Content="Warenkorb speichern" HorizontalAlignment="Left" Margin="228,504,0,0" VerticalAlignment="Top" Width="165"/>
                 </Grid>
             </TabItem>
 
