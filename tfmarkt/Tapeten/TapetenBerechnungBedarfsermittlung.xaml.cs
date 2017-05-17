@@ -67,7 +67,6 @@ namespace tfmarkt
                 else
                 {
                     wandhoeheTapeten.Background = Brushes.White;
-                    error = false;
                 }
             }
 
@@ -88,20 +87,11 @@ namespace tfmarkt
                 else
                 {
                     wandbreiteTapeten.Background = Brushes.White;
-                    error = false;
                 }
             }
 
-
-
-
-
-
             if (error == false)
 	        {
-                wandbreiteTapeten.Background = Brushes.White;
-                wandhoeheTapeten.Background = Brushes.White;
-
                 this.wandhoehe = Convert.ToDouble(wandhoeheTapeten.Text);
                 this.wandbreite = Convert.ToDouble(wandbreiteTapeten.Text);
                 this.flaeche = wandbreite * wandhoehe;
@@ -113,7 +103,7 @@ namespace tfmarkt
                 this.anzahlKleisterpackungen = berechnung.TapetenkleisterBerechnen(this.tapete, this.flaeche, mainwindow.produktkatalog.tapetenkleister);
 
                 ergebnisBox.Text = "";
-                ergebnisBox.Text += "Ausgerechnete Gesamtfläche:\t" + flaeche + " m²" + "\n";
+                ergebnisBox.Text += "Gesamtfläche der Wand:\t\t" + flaeche + " m²" + "\n";
                 ergebnisBox.Text += "Notwendige Tapetenrollen:\t\t" + " " + anzahlTapetenrollen + " Stück\n";
                 ergebnisBox.Text += "Notwendige Kleisterpackungen:\t" + " " + anzahlKleisterpackungen + " Stück\n";		 
 	        }

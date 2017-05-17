@@ -26,15 +26,36 @@ namespace tfmarkt
         public int TapetenBerechnen(double flaeche, double wandbreite, double wandhoehe, Tapete tapete)
         {
             // Berechnung der Anzahl an benötigten Tapetenrollen
-            double verschnitt = 0.10; // es wird von 10 cm Verschnitt ausgegangen
-            double benoetigteBahnen = Convert.ToInt32(Math.Ceiling(wandbreite / tapete.breite));
-
-            double laengeTapetenbahn = wandhoehe + verschnitt;
             
-            double bahnenProTapetenRolle = Convert.ToInt32(Math.Round(tapete.laenge / laengeTapetenbahn, MidpointRounding.ToEven));
-            double benoetigteTapetenRollen = Convert.ToInt32(Math.Ceiling(Convert.ToDecimal(benoetigteBahnen / bahnenProTapetenRolle)));
+            // Verworfen
+            /*
+                double verschnitt = 0.10; // es wird von 10 cm Verschnitt ausgegangen
+                int benoetigteBahnen = Convert.ToInt32(Math.Ceiling(wandbreite / tapete.breite));
 
-            return Convert.ToInt32(benoetigteTapetenRollen);
+                double laengeTapetenbahn = wandhoehe + verschnitt;
+            
+                int bahnenProTapetenRolle = Convert.ToInt32(Math.Round(tapete.laenge / laengeTapetenbahn, MidpointRounding.ToEven));
+                int benoetigteTapetenRollen = Convert.ToInt32(Math.Ceiling(Convert.ToDecimal(benoetigteBahnen / bahnenProTapetenRolle)));
+
+                return Convert.ToInt32(benoetigteTapetenRollen);
+            */
+
+            // Wieviele Tapetenbahnen werden für die Wand benötigt?
+            int benoetigeBahnen = Convert.ToInt32(Math.Ceiling(wandbreite / tapete.breite));
+            
+            // Welche Bahnenlänge wird benötigt?
+            double anzahlMuster = Math.Ceiling(wandhoehe / tapete.musterversatz);
+            double bahnenLaenge = anzahlMuster * tapete.musterversatz;
+
+            // Wieviele Bahnen bekomme ich aus einer Rolle
+            int bahnen = Convert.ToInt32(tapete.laenge / bahnenLaenge);
+
+            // Wieviele Rollen werden benötigt?
+            int benoetigeRollen = Convert.ToInt32(Math.Ceiling(tapete.laenge / bahnen));
+
+            // Berechnung laut http://www.meinewand.de/wie-berechne-tapetenbedarf-tapeten-rapport
+
+            return benoetigeRollen;
         }
 
         public int TapetenkleisterBerechnen(Tapete tapete, double flaeche, Tapetenkleister tapetenkleister)
