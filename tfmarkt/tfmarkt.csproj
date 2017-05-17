@@ -75,6 +75,7 @@
     </Compile>
     <Compile Include="Gesamtrechnung.xaml.cs">
       <DependentUpon>Gesamtrechnung.xaml</DependentUpon>
+	</Compile>
     <Compile Include="Passwortdialog.xaml.cs">
       <DependentUpon>Passwortdialog.xaml</DependentUpon>
     </Compile>

@@ -50,20 +50,20 @@ namespace tfmarkt
 
                 // Preis
                 Label preis = new Label();
-                preis.Content = warenkorbobjekt.Produkt.preis.ToString("##.##") + "€";
+                preis.Content = warenkorbobjekt.Produkt.preis.ToString("##.##") + " €";
                 preis.Margin = new Thickness(401, y, 0, 0);
                 this.TestGrid.Children.Add(preis);
 
                 // Anzahl
                 Label anzahl = new Label();
-                anzahl.Content = warenkorbobjekt.Anzahl + "Stück";
+                anzahl.Content = warenkorbobjekt.Anzahl + " Stück";
                 anzahl.Margin = new Thickness(525, y, 0, 0);
                 this.TestGrid.Children.Add(anzahl);
 
                 // Gesamt
                 decimal gs = warenkorbobjekt.Anzahl * warenkorbobjekt.Produkt.preis;
                 Label gesamt = new Label();
-                gesamt.Content = gs.ToString("##.##") + "€";
+                gesamt.Content = gs.ToString("##.##") + " €";
                 gesamt.Margin = new Thickness(657, y, 0, 0);
                 this.TestGrid.Children.Add(gesamt);               
 
@@ -79,7 +79,7 @@ namespace tfmarkt
             this.TestGrid.Children.Add(nettoLabel);
 
             Label nettoBetrag = new Label();
-            nettoBetrag.Content = gesamtpreis.ToString("##.##") + "€";
+            nettoBetrag.Content = gesamtpreis.ToString("##.##") + " €";
             nettoBetrag.Margin = new Thickness(657, y, 0, 0);
             this.TestGrid.Children.Add(nettoBetrag);
 
@@ -91,7 +91,7 @@ namespace tfmarkt
             this.TestGrid.Children.Add(mwstLabel);
 
             Label mwst = new Label();
-            mwst.Content = mehrwertsteuer.ToString("##.##") + "€";
+            mwst.Content = mehrwertsteuer.ToString("##.##") + " €";
             mwst.Margin = new Thickness(657, y, 0, 0);
             this.TestGrid.Children.Add(mwst);
 
@@ -105,7 +105,7 @@ namespace tfmarkt
 
             decimal bruttobetrag = gesamtpreis + mehrwertsteuer;
             Label bruttoBetrag = new Label();
-            bruttoBetrag.Content = bruttobetrag.ToString("##.##") + "€";
+            bruttoBetrag.Content = bruttobetrag.ToString("##.##") + " €";
             bruttoLabel.FontWeight = FontWeights.Bold;
             bruttoBetrag.Margin = new Thickness(657, y, 0, 0);
             this.TestGrid.Children.Add(bruttoBetrag);
@@ -167,7 +167,7 @@ namespace tfmarkt
             Label unterschriftLabel = new Label();
             unterschriftLabel.Content = "Max Mustermann";
             unterschriftLabel.Margin = new Thickness(17, y, 0, 0);
-            this.TestGrid.Children.Add(unterschriftLabel);   
+            this.TestGrid.Children.Add(unterschriftLabel);
         }
     }
 }
