@@ -40,28 +40,83 @@ namespace tfmarkt
             this.berechnung = new Berechnung();
             this.mainwindow = mainwindow;
 
-            tapeteBeschreibungTextBlock.Text += "Name:\t\t" + tapete.name + "\n";
-            tapeteBeschreibungTextBlock.Text += "Artikelnummer:\t" + tapete.artikelnummer + "\n";
-            tapeteBeschreibungTextBlock.Text += "Beschreibung:\t" + tapete.beschreibung + "\n";
-            tapeteBeschreibungTextBlock.Text += "Preis:\t\t" + tapete.preis + " / Rolle" + "\n";
+            tapeteBeschreibungTextBlock.Text += " Name:\t\t\t" + tapete.name + "\n";
+            tapeteBeschreibungTextBlock.Text += " Artikelnummer:\t\t" + tapete.artikelnummer + "\n";
+            tapeteBeschreibungTextBlock.Text += " Beschreibung:\t\t" + tapete.beschreibung + "\n";
+            tapeteBeschreibungTextBlock.Text += " Preis:\t\t\t" + tapete.preis + " / Rolle" + "\n";
         }
 
         private void BerechnenButton(object sender, RoutedEventArgs e)
         {
-            this.wandhoehe = Convert.ToDouble(wandhoeheTapeten.Text);
-            this.wandbreite = Convert.ToDouble(wandbreiteTapeten.Text);
-            this.flaeche = wandbreite * wandhoehe;
+            bool error = false;
 
-            TapetenBerechnungWindow.Height = 450;
-            berechnenButton.Content = "Aktualisieren";
+            if (wandhoeheTapeten.Text == "")
+            {
+                wandhoeheTapeten.Background = Brushes.OrangeRed;
+                error = true;
+            }
+            else
+            {
+                wandhoeheTapeten.Background = Brushes.White;
 
-            this.anzahlTapetenrollen = berechnung.TapetenBerechnen(flaeche, wandbreite, wandhoehe, tapete);
-            this.anzahlKleisterpackungen = berechnung.TapetenkleisterBerechnen(this.tapete, this.flaeche, mainwindow.produktkatalog.tapetenkleister);
+                if (Convert.ToDouble(wandhoeheTapeten.Text) <= 0)
+                {
+                    wandhoeheTapeten.Background = Brushes.OrangeRed;
+                    error = true;
+                }
+                else
+                {
+                    wandhoeheTapeten.Background = Brushes.White;
+                    error = false;
+                }
+            }
 
-            ergebnisBox.Text = "";
-            ergebnisBox.Text += "Ausgerechnete Gesamtfläche:\t" + flaeche + " qm²" + "\n";
-            ergebnisBox.Text += "Notwendige Tapetenrollen:\t\t" + " " + anzahlTapetenrollen  + " Stück\n";
-            ergebnisBox.Text += "Notwendige Kleisterpackungen:\t" + " " + anzahlKleisterpackungen + " Stück\n";
+            if (wandbreiteTapeten.Text == "")
+            {
+                wandbreiteTapeten.Background = Brushes.OrangeRed;
+                error = true;
+            }
+            else
+            {
+                wandbreiteTapeten.Background = Brushes.White;
+
+                if (Convert.ToDouble(wandbreiteTapeten.Text) <= 0)
+                {
+                    wandbreiteTapeten.Background = Brushes.OrangeRed;
+                    error = true;
+                }
+                else
+                {
+                    wandbreiteTapeten.Background = Brushes.White;
+                    error = false;
+                }
+            }
+
+
+
+
+
+
+            if (error == false)
+	        {
+                wandbreiteTapeten.Background = Brushes.White;
+                wandhoeheTapeten.Background = Brushes.White;
+
+                this.wandhoehe = Convert.ToDouble(wandhoeheTapeten.Text);
+                this.wandbreite = Convert.ToDouble(wandbreiteTapeten.Text);
+                this.flaeche = wandbreite * wandhoehe;
+
+                TapetenBerechnungWindow.Height = 450;
+                berechnenButton.Content = "Aktualisieren";
+
+                this.anzahlTapetenrollen = berechnung.TapetenBerechnen(flaeche, wandbreite, wandhoehe, tapete);
+                this.anzahlKleisterpackungen = berechnung.TapetenkleisterBerechnen(this.tapete, this.flaeche, mainwindow.produktkatalog.tapetenkleister);
+
+                ergebnisBox.Text = "";
+                ergebnisBox.Text += "Ausgerechnete Gesamtfläche:\t" + flaeche + " m²" + "\n";
+                ergebnisBox.Text += "Notwendige Tapetenrollen:\t\t" + " " + anzahlTapetenrollen + " Stück\n";
+                ergebnisBox.Text += "Notwendige Kleisterpackungen:\t" + " " + anzahlKleisterpackungen + " Stück\n";		 
+	        }
         }
 
         private void Abbrechen(object sender, RoutedEventArgs e)

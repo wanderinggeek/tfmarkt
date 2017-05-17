@@ -60,8 +60,8 @@ namespace tfmarkt
                 double laenge;
                 double breite;
                 double reichweite;
-                int anzahl = Convert.ToInt32(ExtraTextBox.Text);
                 int musterversatz = Convert.ToInt32(ExtraTextBox.Text);
+                int anzahl = Convert.ToInt32(ExtraTextBox.Text);
                 int zusatzProduktMass = Convert.ToInt32(ExtraTextBox.Text);
 
                 if (!aendereArtikel)

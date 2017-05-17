@@ -33,92 +33,119 @@ namespace tfmarkt
         {
             InitializeComponent();
 
-            // Später den Produktkatalog als Parameter für Berechnung übergeben
+            // Fenster wird zentriert dargestellt
+            this.WindowStartupLocation = WindowStartupLocation.CenterScreen;
+
             this.berechnung = new Berechnung();
             this.produktkatalog = new ProduktKatalog();
-
-            GetProdukte();
-        }
-
-        private void Selector_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            //if (TapetenTab.IsSelected)
-            //    {
-            //        if (tapetenGui == null)
-            //        {
-            //           tapetenGui = new TapetenGUI();
-            //        }
-            //        TapetenTab.Content = tapetenGui.Content;
-            //    }
-
-            if (VerwaltungTab.IsSelected)
-                {
-                    if (verwaltungGui == null)
-                    {
-                        verwaltungGui = new Verwaltung();
-                    }
-                    VerwaltungTab.Content = verwaltungGui.Content;
-                }
-
-            //if (FliesenTab.IsSelected)
-            //     {
-            //         if (fliesenGui == null)
-            //         {
-            //             fliesenGui = new FliesenGUI();
-            //         }
-            //         FliesenTab.Content = fliesenGui;
-            //     }                    
-        }
-
-        private void GetProdukte()
-        {
-            // Liste mit Testdaten, wird im DataGrid des Hauptmenues angezeigt
-            warenkorb = new ObservableCollection<WarenkorbObjekt>();
-            //warenkorb.Add(new Tapete(1.99, "Fancy Tapete", 11111111, "Hui", 10, 10, 10));
-            //warenkorb.Add(new Tapetenkleister(1.49, "Meister Kleister", 22222222, "Toller Tapetenkleister", 26));
-            //warenkorb.Add(new Fugenfueller(1.49, "Fugenfüller Fugi", 33333333, "Fugenfüller, das Original", 300));
-            //warenkorb.Add(new Fliesenkleber(1.49, "Sticky Fliesenkleber", 44444444, "Klebt super!", 300, true));
-            //produkte.Clear();
-            Warenkorb.ItemsSource = warenkorb;
-
-            // Produktkatalog einlesen
+            this.warenkorb = new ObservableCollection<WarenkorbObjekt>();
             produktkatalog = produktkatalog.ProdukteEinlesen();
             Tapeten.ItemsSource = produktkatalog.tapeten;
             Fliesen.ItemsSource = produktkatalog.fliesen;
         }
 
+        private void Selector_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (VerwaltungTab.IsSelected && verwaltungGui == null)
+            {
+                verwaltungGui = new Verwaltung();
+                VerwaltungTab.Content = verwaltungGui.Content;
+            }
+        }
+
         private void EntferneProduktAusWarenkorb(object sender, RoutedEventArgs e)
         {
-            // Ausgewähltes Produkt aus dem Warenkorb löschen
-            WarenkorbObjekt warenkorbObjekt = (WarenkorbObjekt)Warenkorb.SelectedItem;
-            warenkorb.Remove(warenkorbObjekt);
-            Warenkorb.Items.Refresh();
+            if (warenkorb.Count >= 1)
+            {
+                if (Warenkorb.SelectedIndex != -1)
+                {
+                    MessageBoxResult rsltMessageBox = MessageBox.Show("Produkt aus Warenkorb löschen?", "TF Kalkulation", MessageBoxButton.YesNo);
 
-            // Später ausformulieren: Preis für entfernten Warenkorbposten ermitteln
-            // Anzahl des Produkts * Preis des Produkts
-            berechnung.GesamtBetragAktualisieren(0, "Abziehen");
+                    switch (rsltMessageBox)
+                    {
+                        case MessageBoxResult.Yes:
+                            // Ausgewähltes Produkt aus dem Warenkorb löschen
+                            WarenkorbObjekt warenkorbObjekt = (WarenkorbObjekt)Warenkorb.SelectedItem;
+                            warenkorb.Remove(warenkorbObjekt);
+                            Warenkorb.Items.Refresh();
+                            break;
+                        case MessageBoxResult.No:
+                            break;
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Kein Produkt zum Löschen ausgewählt");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Keine Produkte im Warenkorb vorhanden");
+            }
+
+        }
+
+        private void WarenkorbLoeschen(object sender, RoutedEventArgs e)
+        {
+            if (warenkorb.Count >= 1)
+            {
+                MessageBoxResult rsltMessageBox = MessageBox.Show("Warenkorb wirklich löschen?", "TF Kalkulation", MessageBoxButton.YesNo);
+
+                switch (rsltMessageBox)
+                {
+                    case MessageBoxResult.Yes:
+                        // Kalkulation abbrechen, alle Werte auf Standard zurücksetzen nötig?           
+                        warenkorb.Clear();
+                        Warenkorb.Items.Refresh();
+                        break;
+                    case MessageBoxResult.No:
+                        break;
+                }
+            }
+            else
+            {
+                MessageBox.Show("Keine Produkte im Warenkorb vorhanden");
+            }
         }
 
         private void erstelleGesamtrechnung(object sender, RoutedEventArgs e)
         {
-            // Gesamtrechnung erstellen
-            MessageBox.Show("Neues Fenster für Gesamtrechnung");
-        }
+            if (warenkorb.Count >= 1)
+            {
+                // Gesamtrechnung erstellen
+                decimal gesamtbetrag = berechnung.GesamtbetragBerechnen(warenkorb);
+                MessageBox.Show(gesamtbetrag.ToString("##.##"));
 
-        private void kalkulationAbbrechen(object sender, RoutedEventArgs e)
-        {
-            // Kalkulation abbrechen, alle Werte auf Standard zurücksetzen
-            warenkorb.Clear();
-            Warenkorb.Items.Refresh();
+                // Test
+                decimal mehrwertsteuer = berechnung.SteuerBerechnen(gesamtbetrag);
+                MessageBox.Show(mehrwertsteuer.ToString("##.##"));               
+            }
+            else
+            {
+                MessageBox.Show("Keine Produkte im Warenkorb vorhanden");
+            }
+
         }
 
         private void TapetenBerechnungStarten(object sender, RoutedEventArgs e)
         {
-            // Fenster für Tapetenberechnung öffnen
-            Tapete tapete = (Tapete)Tapeten.SelectedItem;
+            if (Tapeten.SelectedIndex != -1)
+            {
+                // Fenster für Tapetenberechnung öffnen
+                Tapete tapete = (Tapete)Tapeten.SelectedItem;
 
-            TapetenBerechnung tapetenberechnung = new TapetenBerechnung(tapete, this);
-            tapetenberechnung.Show();
+                TapetenBerechnung tapetenberechnung = new TapetenBerechnung(tapete, this);
+
+                // Position des Popup Fenster relativ zum Hauptfenster setzen
+                tapetenberechnung.Top = this.Top + 140;
+                tapetenberechnung.Left = this.Left + 230;
+
+                tapetenberechnung.Show();                
+            }
+            else
+            {
+                MessageBox.Show("Keine Tapete ausgewählt");
+            }
         }
 
         private void FliesenBerechnungStarten(object sender, RoutedEventArgs e)
