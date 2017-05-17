@@ -61,7 +61,7 @@
 
             <TabItem Header="Produktverwaltung" x:Name="VerwaltungTab">
                 <Grid Margin="5,5,0,0">
-                    <TextBlock Text="Inhalt Verwaltung"/>
+                    <TextBlock Text="Kein Zugriff auf Verwaltung"/>
                 </Grid>
             </TabItem>
 

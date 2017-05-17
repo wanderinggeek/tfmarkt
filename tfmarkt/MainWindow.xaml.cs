@@ -30,6 +30,7 @@ namespace tfmarkt
         public TapetenGUI tapetenGui;
         Berechnung berechnung;
         public ProduktKatalog produktkatalog;
+        public Passwortdialog passwortdialog;
 
         public MainWindow()
         {
@@ -41,6 +42,7 @@ namespace tfmarkt
             this.berechnung = new Berechnung();
             this.produktkatalog = new ProduktKatalog();
             this.warenkorb = new ObservableCollection<WarenkorbObjekt>();
+            this.passwortdialog = new Passwortdialog(this);
             produktkatalog = produktkatalog.ProdukteEinlesen();
             Tapeten.ItemsSource = produktkatalog.tapeten;
             Fliesen.ItemsSource = produktkatalog.fliesen;
@@ -63,9 +65,30 @@ namespace tfmarkt
         {
             if (VerwaltungTab.IsSelected && verwaltungGui == null)
             {
-                verwaltungGui = new Verwaltung();
-                VerwaltungTab.Content = verwaltungGui.Content;
+                if (!passwortdialog.passGueltig)
+                {
+                    passwortdialog = new Passwortdialog(this);
+
+                    // Position des Popup Fenster relativ zum Hauptfenster setzen
+                    passwortdialog.Top = this.Top + 140;
+                    passwortdialog.Left = this.Left + 230;
+
+                    passwortdialog.Show();
+                }
+               
+
+                if (passwortdialog.passGueltig)
+                {
+                    ladeVerwaltung();
+                }            
+            
             }
+        }
+
+        public void ladeVerwaltung()
+        {
+            verwaltungGui = new Verwaltung(this);
+            VerwaltungTab.Content = verwaltungGui.Content;
         }
 
         private void EntferneProduktAusWarenkorb(object sender, RoutedEventArgs e)

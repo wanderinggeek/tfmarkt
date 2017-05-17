@@ -191,9 +191,9 @@ namespace tfmarkt
 
                 }
             }          
-            catch (Exception exception)
+            catch 
             {
-                MessageBox.Show(exception.ToString());
+                MessageBox.Show("Überprüfen Sie Ihre Eingaben");
             }
 
         }
