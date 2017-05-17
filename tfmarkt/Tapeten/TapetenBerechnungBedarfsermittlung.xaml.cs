@@ -55,8 +55,8 @@ namespace tfmarkt
             TapetenBerechnungWindow.Height = 450;
             berechnenButton.Content = "Aktualisieren";
 
-            this.anzahlTapetenrollen = berechnung.TapetenBerechnen(flaeche, tapete);
-            this.anzahlKleisterpackungen = berechnung.ZusatzproduktBerechnen("Tapetenkleister", this.tapete);
+            this.anzahlTapetenrollen = berechnung.TapetenBerechnen(flaeche, wandbreite, wandhoehe, tapete);
+            this.anzahlKleisterpackungen = berechnung.TapetenkleisterBerechnen(this.tapete, this.flaeche, mainwindow.produktkatalog.tapetenkleister);
 
             ergebnisBox.Text = "";
             ergebnisBox.Text += "Ausgerechnete Gesamtfläche:\t" + flaeche + " qm²" + "\n";
@@ -86,8 +86,8 @@ namespace tfmarkt
             // Prüfen ob sich der Tapetenkleister schon im Warenkorb befindet, wenn ja Anzahl updaten anstatt neu hinzufügen
             if (mainwindow.warenkorb.Any(x => x.Produkt.name == mainwindow.produktkatalog.tapetenkleister.name))
             {
-                var fliesenkleber = mainwindow.warenkorb.Single(i => i.Produkt.name == "Tapetenkleister A");
-                fliesenkleber.Anzahl += this.anzahlKleisterpackungen;
+                var tapetenkleister = mainwindow.warenkorb.Single(i => i.Produkt.name == mainwindow.produktkatalog.tapetenkleister.name);
+                tapetenkleister.Anzahl += this.anzahlKleisterpackungen;
             }
             else
             {
