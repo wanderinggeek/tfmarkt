@@ -13,7 +13,6 @@
         <TextBox x:Name="wandhoeheTapeten" HorizontalAlignment="Left" Height="23" Margin="89,155,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
         <Label Content="Wandbreite" HorizontalAlignment="Left" Margin="7,184,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="wandbreiteTapeten" HorizontalAlignment="Left" Height="23" Margin="89,187,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
-        <Button Click="BerechnenButton" Content="Berechnen" HorizontalAlignment="Left" Margin="89,226,0,0" VerticalAlignment="Top" Width="75"/>
         <Button x:Name="berechnenButton" Click="BerechnenButton" Content="Berechnen" HorizontalAlignment="Left" Margin="89,226,0,0" VerticalAlignment="Top" Width="75"/>
 
         <Label FontSize="14" Content="Ergebnis der Berechnung" Margin="0,268,26,116" />

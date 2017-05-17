@@ -1,0 +1,32 @@
+﻿<Window x:Class="tfmarkt.Fliesen.FliesenBerechnungBedarfsermittlung"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        ResizeMode="NoResize"
+        x:Name="FliesenberechnungWindow"
+        Title="Fliesen- Bedarf ermitteln" Height="360" Width="300">
+    <Grid Name="Ermittlung">
+        <Label FontSize="14" Content="Fliesendaten" HorizontalAlignment="Left" Margin="0,10,0,0" VerticalAlignment="Top"/>
+        <TextBlock Background="#EFEFEF"  x:Name="flieseBeschreibungTextBlock" HorizontalAlignment="Left" Margin="7,39,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Height="67" Width="314"/>
+
+        <Label FontSize="14" Content="Bodenmaße festlegen:" HorizontalAlignment="Left" Margin="0,111,-24,0" VerticalAlignment="Top" Height="146" Width="318"/>
+        <Label Content="Bodenlänge" HorizontalAlignment="Left" Margin="7,152,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="bodenlaengeFliesen" HorizontalAlignment="Left" Height="23" Margin="89,155,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+        <Label Content="Bodenbreite" HorizontalAlignment="Left" Margin="7,184,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="bodenbreiteFliesen" HorizontalAlignment="Left" Height="23" Margin="89,187,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+        <Label Content="Fugenbreite" HorizontalAlignment="Left" Margin="7,215,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="fugenbreiteTextbox" HorizontalAlignment="Left" Height="23" Margin="89,221,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+        <Button x:Name="berechnenButton" Click="BerechnenButton" Content="Berechnen" HorizontalAlignment="Left" Margin="89,288,0,0" VerticalAlignment="Top" Width="75"/>
+
+        <Label FontSize="14" Content="Ergebnis der Berechnung" Margin="0,315,26,89" />
+        <Border BorderThickness="1" BorderBrush="Black" Margin="7,350,10,60">
+            <TextBlock x:Name="ergebnisBox" Background="White" HorizontalAlignment="Left" Margin="9.2,9.2,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" RenderTransformOrigin="0.093,-0.087" Width="314" Height="83"/>
+        </Border>
+        <Button Content="Abbrechen" Click="Abbrechen" HorizontalAlignment="Left" Margin="12,465,0,0" VerticalAlignment="Top" Width="75" RenderTransformOrigin="0.512,1.239"/>
+        <Button Content="Zum Warenkorb hinzufügen" Click="FlieseDemWarenkorbHinzufuegen" HorizontalAlignment="Left" Margin="106,465,0,0" VerticalAlignment="Top" Width="162"/>
+        <Label Content="m" HorizontalAlignment="Left" Margin="212,152,0,0" VerticalAlignment="Top"/>
+        <Label Content="m" HorizontalAlignment="Left" Margin="212,183,0,0" VerticalAlignment="Top"/>
+        <Label Content="mm" HorizontalAlignment="Left" Margin="212,218,0,0" VerticalAlignment="Top"/>
+        <CheckBox x:Name="kleberBox" Checked="KleberBox_OnChecked" Unchecked="KleberBox_OnUnchecked"  Content="Flesenkleber" HorizontalAlignment="Left" Margin="89,257,0,0" VerticalAlignment="Top"/>
+
+    </Grid>
+</Window>

@@ -17,10 +17,36 @@ namespace tfmarkt
         }
 
         // Der Typ vom Parameter fliese muss auf Fliese geändert werden, sobald die Klasse dazu verfügbar ist
-        public void FliesenBerechnen(double flaeche, Produkt fliese)
+        public int FliesenBerechnen(double flaeche, Fliese fliese, double fugenbreite)
         {
             // Berechnung Fliesen
             // GesamtBetragAktualiseren
+            double flieseGroesse = (double)Math.Ceiling((fliese.laenge * (fliese.breite + fugenbreite)) * 1.05);
+
+            double flaecheinZm = flaeche * 100;
+
+            int benoetigteFliesen = (int)Math.Ceiling(flaecheinZm / flieseGroesse);
+
+            int benoetigtePakete = benoetigteFliesen / fliese.anzahl;
+
+
+            return benoetigtePakete;
+        }
+
+        public int FugenfuellerBerechnen(double flaeche, Fugenfueller fugenfueller)
+        {
+            //Berechnung Fugenfüller
+            int benoetigteFugenfueller = (int)Math.Ceiling((double)flaeche / fugenfueller.reichweite);
+
+            return benoetigteFugenfueller;
+        }
+
+        public int FliesenkleberBerechnen(double flaeche, Fliesenkleber fliesenkleber)
+        {
+            //Berechnung der Fliesenkleber
+            int beoetigteFlesenkleber = (int)Math.Ceiling((double)flaeche / fliesenkleber.reichweite);
+
+            return beoetigteFlesenkleber;
         }
 
         public int TapetenBerechnen(double flaeche, double wandbreite, double wandhoehe, Tapete tapete)
