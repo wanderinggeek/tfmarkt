@@ -20,7 +20,7 @@ namespace tfmarkt.Produktklassen
             base.gewicht = gewicht;
             base.reichweite = reichweite;
 
-            this.produkttyp = "Fugenfueller";
+            this.produkttyp = "Fugenfüller";
         }
 
         public Fugenfueller() { }

@@ -15,7 +15,6 @@ namespace tfmarkt.Produktklassen
         public double laenge { get; set; }
         public double breite { get; set; }
         public double musterversatz { get; set; }
-        double flaeche;
 
         //Konstruktor
         public Tapete(decimal preis, string name, int artikelnummer, string beschreibung, double laenge, double breite, double musterversatz = 0)
@@ -33,11 +32,6 @@ namespace tfmarkt.Produktklassen
 
         public Tapete() { }
 
-        //Gibt die Fläche zurück, die mit der Tapete abgedeckt werden kann
-        public double GetFlaeche()
-        {
-            return this.breite * this.laenge;
-        }
     }
 }
 
