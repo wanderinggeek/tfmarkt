@@ -14,7 +14,7 @@
         <Label Content="Artikelnummer" HorizontalAlignment="Left" Margin="213,24,0,0" VerticalAlignment="Top"/>
         <Label Content="Einzelpreis" HorizontalAlignment="Left" Margin="21,87,0,0" VerticalAlignment="Top"/>
         <Label Content="Beschreibung" HorizontalAlignment="Left" Margin="213,87,0,0" VerticalAlignment="Top"/>
-        <ComboBox x:Name="ProdukttypComboBox" HorizontalAlignment="Left" Margin="213,188,0,0" VerticalAlignment="Top" Width="120" Loaded="ProdukttypComboBox_OnLoaded" SelectionChanged="ProdukttypComboBox_OnSelectionChanged"/>
+        <ComboBox x:Name="ProdukttypComboBox" SelectedValuePath="Content" HorizontalAlignment="Left" Margin="213,188,0,0" VerticalAlignment="Top" Width="120" Loaded="ProdukttypComboBox_OnLoaded" SelectionChanged="ProdukttypComboBox_OnSelectionChanged"/>
         <Label Content="Produkttyp" HorizontalAlignment="Left" Margin="213,159,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="ExtraTextBox" HorizontalAlignment="Left" Height="23" Margin="21,187,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
         <Label x:Name="ExtraTextBoxLabel" Content="" HorizontalAlignment="Left" Margin="21,156,0,0" VerticalAlignment="Top"/>
