@@ -121,11 +121,7 @@ namespace tfmarkt
                 {
                     ausgewaehltesProdukt = (Produkt) VerwaltungsGrid.SelectedItem;
 
-                }
-                else
-                {
-                    ausgewaehltesProdukt = ausgewaehltesProdukt;
-                }
+                }             
 
                 string produkttyp = ausgewaehltesProdukt.produkttyp;
 
